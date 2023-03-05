@@ -1,0 +1,206 @@
+﻿body {
+	background-color:#909090;
+	font-family:Arial, Helvetica, sans-serif;
+	color:black;
+	font-size:16px;
+	font-weight:normal;
+	text-align:left;
+}
+a {
+	color:blue;
+}
+
+/* Fonts definitions */
+.title1 {
+	font-size:24px;
+	font-weight:bold;
+	color:#8000AA;
+}
+.title1 a{
+	text-decoration:none;
+	color:#8000AA;
+}
+
+.title2 {
+	font-size:24px;
+	font-weight:bold;
+	color:#4b4b4b;
+}
+
+.title3 {
+	font-size:17px;
+	font-weight:bold;
+	color:#8000AA;
+}
+
+.basic_font {
+	font-weight:normal;	
+	color:black;
+}
+
+.small_font {
+	font-weight:normal;	
+	font-size:14px;
+	color:black;
+}
+
+.small_warning_font {
+	font-weight:normal;	
+	font-size:14px;
+	color:#c00000;
+}
+
+.error_font {
+	color: red;
+}
+
+.font1 {
+	font-weight:bold;
+	color:black;
+}
+
+.font2 {
+	color:#4b4b4b;
+	font-weight:bold;
+}
+.font2 a {
+	color:#4b4b4b;
+	text-decoration:none;
+}
+.font2 a:hover {
+	color:blue;
+	text-decoration:none;
+}
+.font2 img {
+	border:none;
+	text-decoration:none;
+}
+
+.font3 {
+	color:#c00000;
+	font-weight:normal;
+}
+
+.font4 {
+	color:#A074A3;
+	font-weight:bold;
+}
+.font4 a {
+	color:#A074A3;
+	text-decoration:none;
+}
+.font4 a:hover {
+	color:blue;
+	text-decoration:none;
+}
+
+.font5 {
+	color:#8000AA;
+	font-weight:bold;
+	font-size:17px;
+}
+.font5 a {
+	color:#8000AA;
+	text-decoration:none;
+}
+.font5 img {
+	border:none;
+	text-decoration:none;
+}
+
+.disabled_font {
+	font-family:Arial, Helvetica, sans-serif;
+	color:#999999;
+	font-weight:bold;
+	text-align:left;
+}
+.disabled_font a {
+	color:#999999;
+	text-decoration:none;
+}
+
+.disabled_font_normal {
+	font-family:Arial, Helvetica, sans-serif;
+	color:#999999;
+	text-align:left;
+}
+.disabled_font a {
+	color:#999999;
+	text-decoration:none;
+}
+
+
+.footer_font {
+	font-size:14px;
+	color:#ffffff;
+	background-color:#909090;
+	padding-top:5px;
+	text-align:center;
+}
+.footer_font a {
+	color:#ffffff;
+}
+
+.left_bar {
+	vertical-align:top;
+	width:110px;
+	text-align:center;
+	background-color:#e2e2e2;
+}
+
+.menu {
+	padding:7px;
+	border-bottom:3px #4b4b4b solid;
+	font-family:'Berlin Sans FB';
+	font-size:18px;
+	background-image:url('images/button_grey_gradient.png');
+}
+.menu a {
+	text-decoration:none;
+	color:#4b4b4b;	
+}
+
+.menu_current {
+	padding:7px;
+	border-bottom:3px #4b4b4b solid;
+	font-family:'Berlin Sans FB';
+	font-size:18px;
+	background-image:url('images/button_purple_gradient.png');
+}
+.menu_current a {
+	text-decoration:none;
+	color:#4b4b4b;	
+}
+
+.menu_over {
+	padding:7px;
+	border-bottom:3px #4b4b4b solid;
+	font-family:'Berlin Sans FB';
+	font-size:18px;
+	background-color:#e2e2e2;
+
+}
+.menu_over a {
+	text-decoration:none;
+	color:#4b4b4b;	
+}
+
+.motifs_td {
+	padding:1px 0 1px 1px;
+	
+}
+
+.motifs_td img {
+	height:20px;
+}
+
+.motifs_td_second {
+	padding:1px 0 1px 1px;
+	padding-left:10px;
+}
+
+.motifs_td_second img {
+	height:20px;
+}
+
+

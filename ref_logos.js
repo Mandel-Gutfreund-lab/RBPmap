@@ -1,0 +1,2 @@
+﻿document.write("<div style='padding-top:5px;border-top:medium #d6d6d6 solid'><a href='http://yaelab.technion.ac.il' target='_blank'><img alt='' src='images/logos_60.png' style='border:none' /></a></div>");
+document.write("<div style='text-align:left;margin-top:5px;margin-left:10px' class='font2'>This web site is supported by United States – Israel Binational Science Foundation</div>");

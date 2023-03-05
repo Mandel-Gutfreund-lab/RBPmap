@@ -1,0 +1,24 @@
+
+Predictions for sequence: chr7:117176541-117176741:+
+Calculation parameters:
+Genome: Human (hg19)
+Selected motifs: HNRNPA1(Hs/Mm):duagggw, HNRNPA1(Hs/Mm):guaguagu, HNRNPA1(Hs/Mm):rgnyag, HNRNPA2B1(Hs/Mm):duagggw, HNRNPA2B1(Hs/Mm):gguaguag, HNRNPA2B1(Hs/Mm):aggwuhgr, HNRNPC(Hs/Mm):huuuuuk, HNRNPF(Hs/Mm):gugkau, HNRNPF(Hs/Mm):gukgykg, HNRNPF(Hs/Mm):gggug, HNRNPH1(Hs/Mm):gargag, HNRNPK(Hs/Mm):ccawmcc, HNRNPL(Hs/Mm):amayama, HNRNPL(Hs/Mm):acacrav, HNRNPM(Hs/Mm):gguugguu, HNRNPU(Hs/Mm):uguauug
+Stringency level: Medium
+Conservation filter: On
+======================================================================================================================
+
+Protein: HNRNPC(Hs/Mm)
+Sequence Position	Genomic Coordinate	Motif     	K-mer     	Z-score	P-value 
+13               	chr7:117176553    	huuuuuk   	cuuguuu   	1.713  	4.34e-02
+14               	chr7:117176554    	huuuuuk   	uuguuuu   	1.705  	4.41e-02
+15               	chr7:117176555    	huuuuuk   	uguuuuu   	1.705  	4.41e-02
+16               	chr7:117176556    	huuuuuk   	guuuuua   	1.822  	3.42e-02
+
+Protein: HNRNPM(Hs/Mm)
+Sequence Position	Genomic Coordinate	Motif     	K-mer     	Z-score	P-value 
+29               	chr7:117176569    	gguugguu  	gauugauu  	3.500  	2.33e-04
+33               	chr7:117176573    	gguugguu  	gauugauu  	3.500  	2.33e-04
+37               	chr7:117176577    	gguugguu  	gauugauu  	3.500  	2.33e-04
+41               	chr7:117176581    	gguugguu  	gauugauu  	3.437  	2.94e-04
+45               	chr7:117176585    	gguugguu  	gauugauu  	3.437  	2.94e-04
+49               	chr7:117176589    	gguugguu  	gauugauu  	3.437  	2.94e-04

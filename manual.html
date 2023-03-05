@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>RBPmap - Motifs Analysis and Prediction of RNA Binding Proteins</title>
+<link rel="stylesheet" type="text/css" href="RBPmap.css"/>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+<script type="text/javascript" src="functions.js"></script>
+
+</head>
+
+<body>
+
+<table cellspacing="0" style="margin:0 auto;width:1100px;background-color:#ffffff">
+
+	<tr>
+		<td colspan="2" style="background-image:url('images/gray_gradient_1100.png');border-bottom: #4B4B4B solid 6px">
+			<script type="text/javascript" src="header.js"></script>		
+		</td>
+	</tr>
+
+	<tr>
+		<td class="left_bar">
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="index.html">Home</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="overview.html">Overview</a></div>
+			<div class="menu_current"><a href="manual.html">Manual</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="versions.html">Versions</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="download.html">Download</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="contact.html">Contact</a></div>
+		</td>		
+		
+		<td style="vertical-align:top;padding:20px 30px 20px 20px">	
+			<div class="title1" style="text-decoration:underline">RBPmap Manual</div>
+			<ul style="line-height:22px">
+				<li><a href="#input">Input</a></li>
+				<li><a href="#motifs">Motif selection</a></li>
+				<li><a href="#advanced">Advanced options</a></li>
+				<li><a href="#general">Job submission options</a></li>
+				<li><a href="#sample">Sample data</a></li>
+				<li><a href="#results">Results</a></li>
+			</ul>
+			<div class="title1" style="margin-bottom:7px;font-size:20px;text-decoration:underline"><a name="input">Input</a></div>
+			<div style="margin-bottom:3px;margin-top:5px">
+				<a name="genome" class="font2">Genome and Database Assembly:</a> RBPmap enables full functionality for the following genomes: 
+				<ul style="margin-top:0;margin-bottom:5px">
+					<li>
+						<span class="font3">Human</span>
+						<ul>
+							<li>
+								<a href="http://genome.ucsc.edu/cgi-bin/hgGateway?hgsid=164170549&clade=mammal&org=Human&db=hg38" target="_blank">December 2013 (GRCh38/hg38) assembly</a>,
+								provided by the Genome Reference Consortium.
+							</li>
+							<li>
+								<a href="http://genome.ucsc.edu/cgi-bin/hgGateway?hgsid=164170549&clade=mammal&org=Human&db=hg19" target="_blank">February 2009 (GRCh37/hg19) assembly</a>,
+								provided by the Genome Reference Consortium.
+							</li>
+							<li>
+								<a href="http://genome-euro.ucsc.edu/cgi-bin/hgGateway?hgsid=195244682&clade=mammal&org=Human&db=hg18" target="_blank">March 2006 (NCBI36/hg18) assembly</a>,
+								provided by the International Human Genome Sequencing Consortium.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span class="font3">Mouse</span>
+						<ul>
+							<li>
+								<a href="http://genome-euro.ucsc.edu/cgi-bin/hgGateway?hgsid=195140919&clade=mammal&org=Mouse&db=mm10" target="_blank">December 2011 (GRCm38/mm10) assembly</a>,
+								provided by the Mouse Genome Reference Consortium.	
+							</li>
+							<li>
+								<a href="http://genome-euro.ucsc.edu/cgi-bin/hgGateway?hgsid=195244682&clade=mammal&org=Mouse&db=mm9" target="_blank">July 2007 (NCBI37/mm10) assembly</a>,
+								provided by NCBI and the Mouse Genome Sequencing Consortium.	
+							</li>
+						</ul>
+					</li>
+					<li style="margin-top:2px">
+						<span class="font3">Drosophila melanogaster</span>
+						<ul>
+							<li>
+								<a href="http://genome-euro.ucsc.edu/cgi-bin/hgGateway?hgsid=195140919&clade=insect&org=D.+melanogaster&db=dm3" target="_blank"> April 2006 (BDGP R5/dm3) assembly</a>, 
+								provided by the  Berkeley Drosophila Genome Project (BDGP). Release 5.12 annotations (Oct. 2008) were provided by FlyBase.
+							</li>
+						</ul>
+					</li>
+				</ul>
+				For other genomes, the calculation is performed directly on the input sequence, without taking into account genomic information. 
+			</div>
+			
+			<div style="margin-top:5px">
+				<a name="input_format" class="font2">Query sequences:</a> RBPmap mandatory input is a DNA/RNA sequence or a list of sequences, to which the selected motifs are mapped.
+				The query sequences can be given in two formats: 
+				<ul style="margin-top:0;margin-bottom:0">
+					<li>
+						<span class="font3">Sequences:</span> In FASTA format <a href="manual_example/example.fasta" target="_blank">(view example)</a>.
+					</li>
+					<li>
+						<span class="font3">Genomic Coordinates:</span> In the following format: <span style="font-family:'Courier New', Courier, monospace;font-size:17px">chromosome:start-end:strand</span> <a href="manual_example/coor_example.txt" target="_blank">(view example)</a>.<br />
+						Genomic coordinates input is supported for human, mouse and drosophila genomes only.
+					</li>
+				</ul>
+				<div>
+					<span class="font3">Sequence length:</span>
+					The minimal length for a sequence is <u>21 bp</u> and the maximal is <u>10,000 bp</u>. 
+					If you have longer sequences, please divide them into segments up to 10,000 bp long.
+				</div>
+				<div>
+					<span class="font3">Maximal number of sequences:</span>
+					The maximal number of entries per RBPmap run is <u>5,000</u>. If you have a larger amount of sequences, please divide them into several RBPmap jobs.
+				</div>
+			</div>
+			
+			<div class="title1" style="margin-bottom:7px;margin-top:7px;font-size:20px;text-decoration:underline"><a name="motifs">Motif selection</a></div>
+			<div style="margin-top:5px">
+				The user can select the motifs of interest from RBPmap database
+				<a href="RBPmap_motif_list.html" onclick="return popup(this, 'RBPmap_motifs_list', '800', '800')">(view list of motifs)</a>
+				and/or enter custom motifs.<br />
+				Note that all combinations are allowed: only database motifs, only user-defined motifs or both as long as at least one motif is defined for RBPmap run.
+				<div style="margin-top:2px">
+					<span class="font2" style="margin-top:2px">Search RBPmap motifs database:</span> 
+					RBPmap includes a database of 274 RNA-binding motifs from Human, Mouse and Drosophila melanogaster, that were extracted from the literature. Main references:
+					<ul style="margin-top:0;margin-bottom:3px" class="small_font"> 
+						<li>
+							Dominguez D., Freese P., Alexis M.S., Su A., Hochman M., Palden T., Bazile C., Lambert N.J., Van Nostrand E.L., 
+							Pratt G.A., Yeo G.W., Graveley B.R., Burge C.B. (2018). Sequence, Structure, and Context Preferences of Human RNA Binding Proteins.
+							Mol Cell., 70(5):854-867.				
+						</li>
+						<li>Ray,D., Kazan,H., Cook,K.B., Weirauch,M.T., Najafabadi,H.S., Li,X., Gueroussov,S., Albu,M., Zheng,H., Yang,A., et al. (2013)<br />
+							A compendium of RNA-binding motifs for decoding gene regulation. Nature, 499, 172–177.
+						</li>
+						<li>
+							Huelga,S.C., Vu,A.Q., Arnold,J.D., Liang,T.Y., Liu,P.P., Yan,B.Y., Donohue,J.P., Shiue,L., Hoon,S., Brenner,S., et al. (2012)
+							Integrative genome-wide analysis reveals cooperative regulation of alternative splicing by hnRNP proteins. Cell Rep, 1, 167–178.
+						</li>
+						<li> 
+							Hafner,M., Landthaler,M., Burger,L., Khorshid,M., Hausser,J., Berninger,P., Rothballer,A., Ascano,M.,Jr, Jungkamp,A.-C., Munschauer,M., et al. (2010) 
+							Transcriptome-wide identification of RNA-binding protein and microRNA target sites by PAR-CLIP. Cell, 141, 129–141.
+						</li>
+						<li>
+							Akerman,M., David-Eden,H., Pinter,R.Y. and Mandel-Gutfreund,Y. (2009) 
+							A computational approach for genome-wide mapping of splicing factor binding sites. Genome Biol., 10, R30.
+						</li>
+					</ul>
+					
+					Searching the motifs database can be done in two ways:
+					<ol style="margin-top:0;margin-bottom:0">
+						<li>
+							<span class="font3">Enter an RNA binding protein name, symbol or common alias</span> and click the 'Search' button.<br /> 
+							A pop-up window should be opened with the search results.<br />
+							(Note that the browser's pop-up blocker has to be turned off for this site in order to view the search results).<br/>
+							In case the protein or the search phrase are not found in RBPmap database, the full list of motifs is displayed and the user can select any motif(s) of interest.
+						</li>
+						<li>
+							<span class="font3">Open the full list of motifs</span> stored in RBPmap database and select any motif(s) of interest.
+						</li>
+					</ol>
+				</div>
+				
+				<div style="margin-top:2px">
+					<span class="font2" style="margin-top:2px">User-defined motifs:</span> 
+					The motifs can be provided as a consensus or a PSSM (Position Specific Scoring Matrix), where both options can be applied together.
+					<u>The accepted motif length is 4-10 positions</u>.
+					<ul style="margin-top:0;margin-bottom:0">
+						<li>
+							<span class="font3">Consensus motifs:</span> You may enter one or more motifs that
+							contain <a href="http://www.chick.manchester.ac.uk/SiteSeer/IUPAC_codes.html" target="">IUPAC symbols</a> only.
+							Adding a protein name is optional (by default the protein name gets the value of 'User1', 'User2', etc...).  
+						</li>
+						<li>
+							<span class="font3">PSSM motifs:</span> PSSM motifs (one or more) can be provided as a probability matrix file, in <a href="manual_example/QK1_PSSM.txt" target="_blank">MEME format</a>.
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--
+			<p style="margin-bottom:5px;margin-top:0">
+				By default, RBPmap searches for a list of binding sites of known splicing factors.
+				<a href="SF_list.html" onclick="return popup(this, 'RBPmap_motif_list')">(View list)</a>
+			</p>
+			<ul style="margin-top:0">
+				<li>
+					<span class="font1">Custom motif selection:</span> Enables to select specific motifs of interest from RBPmap's list. 
+					It is possible to clear all pre-defined motifs and search for user-defined motifs only. 
+				</li>
+				<li style="padding-top:5px">
+					<span class="font1">User-defined motifs:</span> Enables to add user motifs to RBPmap's search.
+					The number of added motifs is not limited, you can add as many motifs as you wish by clicking the 'Add another motif' button. To delete the additional motifs lines from the browser, press F5 or use the browser's refresh button.<br />
+					The motifs should be 4-10 bp long and contain IUPAC symbols only.<br /> 
+					The default factor name is 'user&lt;N&gt;', you can replace it with your factor name.
+				</li>
+			</ul>
+			-->
+			
+			<div class="title1" style="margin-bottom:7px;margin-top:7px;font-size:20px;text-decoration:underline"><a name="advanced">Advanced options</a></div>
+	
+			<div style="margin-top:5px">
+				<a name="threshold" class="font2">Stringency level:</a> 
+				Two thresholds (significant and suboptimal) are used to calculate the Weighted-Rank function and control the stringency level of filtering the results.
+				This option enables to control the stringency level by selecting one of the following options:
+				<ul style="margin-bottom:7px;margin-top:2px">
+				<li>
+					<span class="font3">Default stringency:</span> P-value<span class="small_font">[significant]</span> &lt; 0.01 and P-value<span class="small_font">[suboptimal]</span> &lt; 0.02
+				</li>
+				<li>
+					<span class="font3">High stringency:</span> P-value<span class="small_font">[significant]</span> &lt; 0.005 and P-value<span class="small_font">[suboptimal]</span> &lt; 0.01
+				</li>
+			</ul>
+			</div>
+			
+			<div style="margin-top:5px">
+				<span class="font2">Conservation filter:</span> Based on the tendency of regulatory regions to be conserved, 
+				RBPmap can apply an additional filter, which uses the UCSC phyloP conservation of placental mammals (for human and mouse genomes)
+				or phastCons conservation of insects for D. melanogaster genome.
+				When applying the conservation filter, regions, their average conservation score is lower than the average conservation score of regulatory regions, 
+				are not included in the final results.<br />
+				By default, this filter is not applied, since it may be time-consuming (depending on the number of input sequences). 
+				We do recommend applying it in order to increase the specificity of the results, especially in cases of repetitive motifs.
+			</div>
+			
+			<div class="title1" style="margin-bottom:7px;margin-top:7px;font-size:20px;text-decoration:underline"><a name="general">Job submission options</a></div>
+			<div style="margin-top:5px">
+				<span class="font2">E-mail address:</span> The E-mail address is an optional field, required in order to get a link to the results page.
+				If you don't get an E-mail from RBPmap within a reasonable time, check your spam folder, it might accidentally get there.  
+			</div>
+			<div style="margin-top:5px">
+				<a name="job" class="font2">Job name:</a> An optional parameter that enables you to give your job an informative name,
+				otherwise, it will get a unique number identifier.
+			</div>
+			<div class="font3" style="margin-top:5px">
+				Note: a user can run up to 5 jobs simultaneously. When exceeding this limitation, the submitted job waits until one of the running jobs finishes and then it is executed. 
+			</div>
+			
+			<div class="title1" style="margin-bottom:7px;margin-top:7px;font-size:20px;text-decoration:underline"><a name="sample">Sample data</a></div>
+			<div style="margin-top:5px">
+				The 'Load sample data' button enables to try out RBPmap by automatically filling all the required fields for RBPmap run with sample data.
+				In order to actually run RBPmap, you should click the 'Submit' button.<br/>
+				By default, the selected motifs and the advanced parameters are automatically filled to fit the example sequence, but it is possible to change all parameters as desired to experience the different options of RBPmap.
+			</div>
+				
+			<div class="title1" style="margin-bottom:7px;margin-top:7px;font-size:20px;text-decoration:underline"><a name="results">Results</a></div>
+			<div style="margin-top:5px">
+				RBPmap results page consists of two presentations of the results for each input sequence: <a href="manual_example/results.html" target="_blank">(view results page example)</a>
+				<ol style="margin-top:2px;margin-bottom:0" class="font3">
+					<li>A summary of the binding sites predictions.</li>
+					<li style="margin-top:2px">
+						A visualized display of the binding sites using the UCSC Genome Browser.
+					</li>
+				</ol>
+				<div style="margin-top:2px">
+					In case there is more than one valid input sequence, an additional file, which summarizes the motifs predictions for all 
+					the input sequences together, is given as well. <a href="manual_example/All_Predictions.txt" target="_blank">(View all sequences summary example)</a>
+				</div>
+				<div style="margin-top:5px">
+				<span class="font3">Note:</span> RBPmap uses <a href="http://genome.ucsc.edu/cgi-bin/hgBlat?command=start" target="_blank">BLAT</a> to determine the query sequence coordinates in human, mouse and drosophila genomes (in case the input is FASTA sequences).
+				In cases BLAT does not find at least 95% identity match for the query sequence or in other genomes, there is no possibility to display RBPmap results in the Genome Browser.	
+				</div>
+			</div>
+			
+			
+			<div style="margin-top:5px">
+				<span class="font2">Binding sites predictions summary</span> <a href="manual_example/sequence1/Predictions.txt" target="_blank">(view example)</a><span class="font2">:</span><br />
+				This is a summary table of the predicted binding sites, their location on the input sequence and a measure for their reliability. 
+				Each protein is shown separately, where all the occurrences of the protein's ascribed motifs are listed together, ordered by their sequence position.
+				The table is available both in web-based presentation and as a downloadable text file.<br />
+				<span class="font3">Note:</span> In case there are more than 100 valid entries, the summary table will be provided as a downloadable text file only.
+				<div style="margin-top:2px">RBPmap presents only the hits that have passed all the filtering stages of the algorithm:</div>
+				<ul style="margin-top:0;margin-bottom:0">
+					<li>The hit's initial match score must pass the significant and suboptimal thresholds, controlled by the stringency level.</li>
+					<li>The hit's WR score must be significantly greater (with P-value&lt;0.05) than the mean score of the background, calculated for the relevant genomic region.</li>
+					<li>If the conservation filter is applied, the mean conservation score of intergenic regions over the input sequence must be greater than the mean conservation score of regulatory regions.</li>
+				</ul>
+				The summary table consists of the following information:
+				<div style="margin-top:2px"><span class="font3">Sequence Position:</span> The starting position of the binding site in the input sequence (relative to the sequence itself and not to the genomic position).</div>
+				<div style="margin-top:2px"><span class="font3">Genomic Coordinate:</span> The genomic coordinate from which the binding site starts (the coordinates in RBPmap are 1-based, meaning that the starting and ending positions are both included in the calculated sequence).</div>
+				<div style="margin-top:2px"><span class="font3">Motif:</span> The motif that is mapped to the query sequence (several proteins have more than one motif). All the motifs are in consensus representation to simplify the results display.</div>
+				<div style="margin-top:2px"><span class="font3">
+					K-mer occurrence:</span> The exact occurrence of the motif in the query sequence. 
+					In the web-based presentation of the summary table, the occurrence of the k-mer is displayed in the context of its flanking sequences (25 bp of each side). 
+					The k-mer itself is color-coded by WebLogo colors.
+				</div>
+				<div style="margin-top:2px"><span class="font3">
+					Z-score and P-value:</span> The Z-score (standard score) measures the deviation of the hit's WR score from the mean. 
+					The mean WR score was calculated using specific background datasets.<br />
+					The P-value represents the probability of obtaining a specific Z-score considering a normal distribution (one-tailed). 
+				</div>			
+			</div>
+			
+			<div style="margin-top:5px">
+				<span class="font2">UCSC Genome Browser visualization</span> <a href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg19&position=chr7&hgt.customText=http://rbpmap.technion.ac.il/manual_example/sequence1/bedgraph.txt&ctfile_hg19=" target="_blank">(view example)</a><span class="font2">:</span>
+				<div style="margin-bottom:5px">
+					The Genome Browser visualizes the predicted motif binding sites on the input sequence. 
+					Each track represents a protein, and the predicted binding sites are displayed at their first genomic position. 
+				</div>
+				<div style="margin-top:2px">
+					<span class="font3">Note:</span> The Genome Browser displays only the plus strand. If your sequence is mapped to the minus strand, read the Genome Browser results from right to left.
+				</div>
+			</div>
+			<div style="margin-top:2px">
+				The predicted binding sites custom tracks are initially presented in dense mode. The hits are colored in different shades of gray according to their Z-score (a higher score is darker).
+				Clicking on the track's title opens it in a full mode. The crossing line represents the P-value=0.05 cutoff.
+				<br />
+				In addition to RBPmap custom tracks, the default presentation includes the 'GENECODE v32' track (or ‘UCSC Genes’ in older genome assemblies) in dense mode.
+			</div>
+			
+			<div style="margin-top:5px;">
+				For more information about the UCSC Genome Browser options, go to the <a href="http://genome.ucsc.edu/goldenPath/help/hgTracksHelp.html" target="_blank">Genome Browser User Guide</a>.
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="left_bar"></td>
+		<td style="padding:0 15px 10px 15px;">
+			<script type="text/javascript" src="ref_logos.js"></script>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="footer_font">
+			<script type="text/javascript" src="footer.js"></script>
+		</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

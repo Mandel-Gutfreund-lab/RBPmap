@@ -1,0 +1,476 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>RBPmap - Motifs Analysis and Prediction of RNA Binding Proteins</title>
+<link rel="stylesheet" type="text/css" href="../RBPmap.css"/>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<script type="text/javascript">
+	// Open / close div block and change the arrow
+	function changeDisplay(blockID, imgID){
+		var block_elem = document.getElementById(blockID);
+		var img_elem = document.getElementById(imgID);
+
+		if (block_elem.style.display == "none"){
+			block_elem.style.display = "block";
+			img_elem.src = "../images/minus_14.png";
+		}
+		else{
+			block_elem.style.display = "none";
+			img_elem.src = "../images/plus_14.png";
+		}
+	}
+</script>
+
+</head>
+
+<body>
+
+<table cellspacing="0" style="margin:0 auto;width:1100px;background-color:#ffffff">
+
+	<tr>
+		<td colspan="2" style="background-image:url('../images/gray_gradient_1100.png');border-bottom: #4B4B4B solid 6px">
+			<table style="width:100%" cellspacing="0">
+				<tr>
+					<td><img alt="" src="../images/RBPmap_logo_new.png" /></td>
+					<td style='font-size:18px;vertical-align:bottom;color:#4B4B4B;font-weight:bold;padding-bottom:5px;padding-right:20px'>
+						Version 1.0
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="left_bar">
+			<div class="menu_current"><a href="../index_DEV.html">Home</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="../overview.html">Overview</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="../manual.html">Manual</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="../contact.html">Contact</a></div>
+		</td>
+		<td style="vertical-align:top;padding:20px 20px 15px 20px;height:480px">
+
+			<div class="title1">RBPmap Results for job: <span class="title2">Results example</span></div>
+
+			<div style="margin-top:10px;font-size:18px">Job status: <span style="color:#339966;font-weight:bold">Finished</span></div>
+			<div class="title3" style="margin-bottom:5px;margin-top:10px;text-decoration:underline">General calculation parameters</div>
+			<div><span class="font2">Genome:</span> Human (hg19)</div>
+			<div><span class="font2">Selected motifs:</span><span class="small_font"> HNRNPA1(Hs/Mm):duagggw, HNRNPA1(Hs/Mm):guaguagu, HNRNPA1(Hs/Mm):rgnyag, HNRNPA2B1(Hs/Mm):duagggw, HNRNPA2B1(Hs/Mm):gguaguag, HNRNPA2B1(Hs/Mm):aggwuhgr, HNRNPC(Hs/Mm):huuuuuk, HNRNPF(Hs/Mm):gugkau, HNRNPF(Hs/Mm):gukgykg, HNRNPF(Hs/Mm):gggug, HNRNPH1(Hs/Mm):gargag, HNRNPK(Hs/Mm):ccawmcc, HNRNPL(Hs/Mm):amayama, HNRNPL(Hs/Mm):acacrav, HNRNPM(Hs/Mm):gguugguu, HNRNPU(Hs/Mm):uguauug</span></div>
+			<div><span class="font2">Stringency level:</span> Medium</div>
+			<div><span class="font2">Conservation filter:</span> On</div>
+			<div id="download_all_div" class="basic_font" style="margin-top:5px;display:none"></div>
+
+			<div style="border:thin #d8d8d8 solid;background-color:#f2f2f2;padding:5px;margin-top:7px">
+				<div class="title3">Results for sequence: <span class="basic_font">chr7:117176541-117176741:+</span></div>
+				<div style="margin-top:2px"><span class="font2">Genomic position:</span> chr7:117176541-117176741&nbsp;&nbsp;&nbsp;<span class="font2">Strand:</span> +</div>
+				<div style="margin-top:2px" class="font2"><a href="javascript:changeDisplay('predictions_block_1', 'predictions_img_1')" style="color:blue"><img id="predictions_img_1" alt="" src="../images/plus_14.png" /> View binding sites predictions summary</a></div>
+				<div id="predictions_block_1" style="border:thin #d8d8d8 solid;background-color:#ffffff;padding:5px;margin-bottom:5px;display:none">
+					<table style="width:100%" cellspacing="0">
+						<tr>
+							<td colspan="6" class="font5" style="font-size:15px;padding-top:2px">
+								Protein: HNRNPC(Hs/Mm)
+							</td>
+						</tr>
+						<tr>
+							<td class="font2" style="font-size:15px;vertical-align:bottom">Position</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Genomic coordinate</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Motif</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Occurrence</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Z-score</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">P-value</td>
+						</tr>
+						<tr>
+							<td class="small_font">13</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176553</td>
+							<td class="small_font" style="padding-left:10px">huuuuuk</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uagauaauuuga<span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>uuacuauuagauugauugauugauu</td>
+							<td class="small_font" style="padding-left:10px">1.713</td>
+							<td class="small_font" style="padding-left:10px">4.34e-02</td>
+						</tr>
+						<tr>
+							<td class="small_font">14</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176554</td>
+							<td class="small_font" style="padding-left:10px">huuuuuk</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uagauaauuugac<span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>uacuauuagauugauugauugauug</td>
+							<td class="small_font" style="padding-left:10px">1.705</td>
+							<td class="small_font" style="padding-left:10px">4.41e-02</td>
+						</tr>
+						<tr>
+							<td class="small_font">15</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176555</td>
+							<td class="small_font" style="padding-left:10px">huuuuuk</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uagauaauuugacu<span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>acuauuagauugauugauugauuga</td>
+							<td class="small_font" style="padding-left:10px">1.705</td>
+							<td class="small_font" style="padding-left:10px">4.41e-02</td>
+						</tr>
+						<tr>
+							<td class="small_font">16</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176556</td>
+							<td class="small_font" style="padding-left:10px">huuuuuk</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uagauaauuugacuu<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span>cuauuagauugauugauugauugau</td>
+							<td class="small_font" style="padding-left:10px">1.822</td>
+							<td class="small_font" style="padding-left:10px">3.42e-02</td>
+						</tr>
+						<tr>
+							<td colspan="6" class="font5" style="font-size:15px;padding-top:2px">
+								Protein: HNRNPM(Hs/Mm)
+							</td>
+						</tr>
+						<tr>
+							<td class="font2" style="font-size:15px;vertical-align:bottom">Position</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Genomic coordinate</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Motif</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Occurrence</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Z-score</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">P-value</td>
+						</tr>
+						<tr>
+							<td class="small_font">29</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176569</td>
+							<td class="small_font" style="padding-left:10px">gguugguu</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">auaauuugacuuguuuuuacuauua<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>gauugauugauugauugauuuacag</td>
+							<td class="small_font" style="padding-left:10px">3.500</td>
+							<td class="small_font" style="padding-left:10px">2.33e-04</td>
+						</tr>
+						<tr>
+							<td class="small_font">33</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176573</td>
+							<td class="small_font" style="padding-left:10px">gguugguu</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">uuugacuuguuuuuacuauuagauu<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>gauugauugauugauuuacagagau</td>
+							<td class="small_font" style="padding-left:10px">3.500</td>
+							<td class="small_font" style="padding-left:10px">2.33e-04</td>
+						</tr>
+						<tr>
+							<td class="small_font">37</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176577</td>
+							<td class="small_font" style="padding-left:10px">gguugguu</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">acuuguuuuuacuauuagauugauu<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>gauugauugauuuacagagaucaga</td>
+							<td class="small_font" style="padding-left:10px">3.500</td>
+							<td class="small_font" style="padding-left:10px">2.33e-04</td>
+						</tr>
+						<tr>
+							<td class="small_font">41</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176581</td>
+							<td class="small_font" style="padding-left:10px">gguugguu</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">guuuuuacuauuagauugauugauu<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>gauugauuuacagagaucagagagc</td>
+							<td class="small_font" style="padding-left:10px">3.437</td>
+							<td class="small_font" style="padding-left:10px">2.94e-04</td>
+						</tr>
+						<tr>
+							<td class="small_font">45</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176585</td>
+							<td class="small_font" style="padding-left:10px">gguugguu</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">uuacuauuagauugauugauugauu<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>gauuuacagagaucagagagcuggg</td>
+							<td class="small_font" style="padding-left:10px">3.437</td>
+							<td class="small_font" style="padding-left:10px">2.94e-04</td>
+						</tr>
+						<tr>
+							<td class="small_font">49</td>
+							<td class="small_font" style="padding-left:10px">chr7:117176589</td>
+							<td class="small_font" style="padding-left:10px">gguugguu</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">uauuagauugauugauugauugauu<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>uacagagaucagagagcugggaaga</td>
+							<td class="small_font" style="padding-left:10px">3.437</td>
+							<td class="small_font" style="padding-left:10px">2.94e-04</td>
+						</tr>
+					</table>
+					<div style="padding-top:5px">
+						<a href="http://rbpmap.technion.ac.il/manual_example/sequence1/Predictions.txt" target="_blank">Download predictions summary as text file</a>
+					</div>
+				</div>
+				<table cellspacing="0">
+					<tr>
+						<td class="font2">Genome Browser visualization:</td>
+						<td style="padding-left:7px">
+							<a href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg19&position=chr7&hgt.customText=http://rbpmap.technion.ac.il/manual_example/sequence1/bedgraph.txt&ctfile_hg19=" target="_blank">Open the results in UCSC Genome Browser</a>
+						</td>
+						<td style="padding-left:7px" class="font2">Or</td>
+						<td style="padding-left:7px">
+							<a href="http://rbpmap.technion.ac.il/manual_example/sequence1/RBPmap_custom_tracks.txt" target="_blank">Download custom tracks in BedGraph format</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div style="border:thin #d8d8d8 solid;background-color:#f2f2f2;padding:5px;margin-top:7px">
+				<div class="title3">Results for sequence: <span class="basic_font">chr6:161990246-161990559:-</span></div>
+				<div style="margin-top:2px"><span class="font2">Genomic position:</span> chr6:161990246-161990559&nbsp;&nbsp;&nbsp;<span class="font2">Strand:</span> -</div>
+				<div style="margin-top:2px" class="font2"><a href="javascript:changeDisplay('predictions_block_2', 'predictions_img_2')" style="color:blue"><img id="predictions_img_2" alt="" src="../images/plus_14.png" /> View binding sites predictions summary</a></div>
+				<div id="predictions_block_2" style="border:thin #d8d8d8 solid;background-color:#ffffff;padding:5px;margin-bottom:5px;display:none">
+					<table style="width:100%" cellspacing="0">
+						<tr>
+							<td colspan="6" class="font5" style="font-size:15px;padding-top:2px">
+								Protein: HNRNPA1(Hs/Mm)
+							</td>
+						</tr>
+						<tr>
+							<td class="font2" style="font-size:15px;vertical-align:bottom">Position</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Genomic coordinate</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Motif</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Occurrence</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Z-score</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">P-value</td>
+						</tr>
+						<tr>
+							<td class="small_font">229</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990331</td>
+							<td class="small_font" style="padding-left:10px">rgnyag</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">cugucaugaaagauagacgcuaaug<span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span>uuugggcuccccagggaggccgagu</td>
+							<td class="small_font" style="padding-left:10px">2.648</td>
+							<td class="small_font" style="padding-left:10px">4.05e-03</td>
+						</tr>
+						<tr>
+							<td colspan="6" class="font5" style="font-size:15px;padding-top:2px">
+								Protein: HNRNPA2B1(Hs/Mm)
+							</td>
+						</tr>
+						<tr>
+							<td class="font2" style="font-size:15px;vertical-align:bottom">Position</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Genomic coordinate</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Motif</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Occurrence</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Z-score</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">P-value</td>
+						</tr>
+						<tr>
+							<td class="small_font">213</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990347</td>
+							<td class="small_font" style="padding-left:10px">aggwuhgr</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">caaaggcugcaucagacugucauga<span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span>cgcuaaugagacaguuugggcuccc</td>
+							<td class="small_font" style="padding-left:10px">2.509</td>
+							<td class="small_font" style="padding-left:10px">6.05e-03</td>
+						</tr>
+						<tr>
+							<td colspan="6" class="font5" style="font-size:15px;padding-top:2px">
+								Protein: HNRNPC(Hs/Mm)
+							</td>
+						</tr>
+						<tr>
+							<td class="font2" style="font-size:15px;vertical-align:bottom">Position</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Genomic coordinate</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Motif</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Occurrence</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Z-score</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">P-value</td>
+						</tr>
+						<tr>
+							<td class="small_font">81</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990479</td>
+							<td class="small_font" style="padding-left:10px">huuuuuk</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">auauaaccacacagagugaaaguga<span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>gugauuaauucuucuuuccaacagc</td>
+							<td class="small_font" style="padding-left:10px">1.899</td>
+							<td class="small_font" style="padding-left:10px">2.88e-02</td>
+						</tr>
+						<tr>
+							<td class="small_font">82</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990478</td>
+							<td class="small_font" style="padding-left:10px">huuuuuk</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">uauaaccacacagagugaaagugac<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span>ugauuaauucuucuuuccaacagcu</td>
+							<td class="small_font" style="padding-left:10px">2.070</td>
+							<td class="small_font" style="padding-left:10px">1.92e-02</td>
+						</tr>
+						<tr>
+							<td class="small_font">83</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990477</td>
+							<td class="small_font" style="padding-left:10px">huuuuuk</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">auaaccacacagagugaaagugacg<span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:red;font-weight:bold;font-size:16px">u</span>gauuaauucuucuuuccaacagcug</td>
+							<td class="small_font" style="padding-left:10px">1.891</td>
+							<td class="small_font" style="padding-left:10px">2.93e-02</td>
+						</tr>
+						<tr>
+							<td class="small_font">95</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990465</td>
+							<td class="small_font" style="padding-left:10px">huuuuuk</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">agugaaagugacguuuuugugauua<span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:blue;font-weight:bold;font-size:16px">c</span>uuuccaacagcuggcugucccaacu</td>
+							<td class="small_font" style="padding-left:10px">1.899</td>
+							<td class="small_font" style="padding-left:10px">2.88e-02</td>
+						</tr>
+						<tr>
+							<td class="small_font">98</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990462</td>
+							<td class="small_font" style="padding-left:10px">huuuuuk</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">gaaagugacguuuuugugauuaauu<span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:red;font-weight:bold;font-size:16px">u</span>ccaacagcuggcugucccaacuccu</td>
+							<td class="small_font" style="padding-left:10px">1.899</td>
+							<td class="small_font" style="padding-left:10px">2.88e-02</td>
+						</tr>
+						<tr>
+							<td colspan="6" class="font5" style="font-size:15px;padding-top:2px">
+								Protein: HNRNPF(Hs/Mm)
+							</td>
+						</tr>
+						<tr>
+							<td class="font2" style="font-size:15px;vertical-align:bottom">Position</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Genomic coordinate</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Motif</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Occurrence</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Z-score</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">P-value</td>
+						</tr>
+						<tr>
+							<td class="small_font">161</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990399</td>
+							<td class="small_font" style="padding-left:10px">gggug</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">aagagcuccaucacuucaggauucu<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span>aagagcaggugagugagcaucucaa</td>
+							<td class="small_font" style="padding-left:10px">1.676</td>
+							<td class="small_font" style="padding-left:10px">4.69e-02</td>
+						</tr>
+						<tr>
+							<td class="small_font">172</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990388</td>
+							<td class="small_font" style="padding-left:10px">gggug</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">cacuucaggauucugggagaagagc<span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span>agugagcaucucaaaggcugcauca</td>
+							<td class="small_font" style="padding-left:10px">2.139</td>
+							<td class="small_font" style="padding-left:10px">1.62e-02</td>
+						</tr>
+						<tr>
+							<td class="small_font">176</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990384</td>
+							<td class="small_font" style="padding-left:10px">gggug</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">ucaggauucugggagaagagcaggu<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:orange;font-weight:bold;font-size:16px">g</span>agcaucucaaaggcugcaucagacu</td>
+							<td class="small_font" style="padding-left:10px">2.009</td>
+							<td class="small_font" style="padding-left:10px">2.23e-02</td>
+						</tr>
+						<tr>
+							<td colspan="6" class="font5" style="font-size:15px;padding-top:2px">
+								Protein: HNRNPH1(Hs/Mm)
+							</td>
+						</tr>
+						<tr>
+							<td class="font2" style="font-size:15px;vertical-align:bottom">Position</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Genomic coordinate</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Motif</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Occurrence</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Z-score</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">P-value</td>
+						</tr>
+						<tr>
+							<td class="small_font">165</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990395</td>
+							<td class="small_font" style="padding-left:10px">gargag</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">gcuccaucacuucaggauucuggga<span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span>caggugagugagcaucucaaaggcu</td>
+							<td class="small_font" style="padding-left:10px">2.626</td>
+							<td class="small_font" style="padding-left:10px">4.32e-03</td>
+						</tr>
+						<tr>
+							<td colspan="6" class="font5" style="font-size:15px;padding-top:2px">
+								Protein: HNRNPK(Hs/Mm)
+							</td>
+						</tr>
+						<tr>
+							<td class="font2" style="font-size:15px;vertical-align:bottom">Position</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Genomic coordinate</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Motif</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Occurrence</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Z-score</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">P-value</td>
+						</tr>
+						<tr>
+							<td class="small_font">121</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990439</td>
+							<td class="small_font" style="padding-left:10px">ccawmcc</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">uucuucuuuccaacagcuggcuguc<span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:blue;font-weight:bold;font-size:16px">c</span>cuugauuaaagagcuccaucacuuc</td>
+							<td class="small_font" style="padding-left:10px">2.388</td>
+							<td class="small_font" style="padding-left:10px">8.47e-03</td>
+						</tr>
+						<tr>
+							<td colspan="6" class="font5" style="font-size:15px;padding-top:2px">
+								Protein: HNRNPL(Hs/Mm)
+							</td>
+						</tr>
+						<tr>
+							<td class="font2" style="font-size:15px;vertical-align:bottom">Position</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Genomic coordinate</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Motif</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Occurrence</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">Z-score</td>
+							<td class="font2" style="font-size:15px;padding-left:10px;vertical-align:bottom">P-value</td>
+						</tr>
+						<tr>
+							<td class="small_font">54</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990506</td>
+							<td class="small_font" style="padding-left:10px">amayama</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">uugauagucauaacucuguguaaga<span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:red;font-weight:bold;font-size:16px">u</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span>accacacagagugaaagugacguuu</td>
+							<td class="small_font" style="padding-left:10px">3.107</td>
+							<td class="small_font" style="padding-left:10px">9.45e-04</td>
+						</tr>
+						<tr>
+							<td class="small_font">62</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990498</td>
+							<td class="small_font" style="padding-left:10px">amayama</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">cauaacucuguguaagaacauauaa<span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span>gagugaaagugacguuuuugugauu</td>
+							<td class="small_font" style="padding-left:10px">3.480</td>
+							<td class="small_font" style="padding-left:10px">2.51e-04</td>
+						</tr>
+						<tr>
+							<td class="small_font">64</td>
+							<td class="small_font" style="padding-left:10px">chr6:161990496</td>
+							<td class="small_font" style="padding-left:10px">amayama</td>
+							<td class="small_font" style="padding-left:10px;font-family:'Courier New', Courier, monospace">uaacucuguguaagaacauauaacc<span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:blue;font-weight:bold;font-size:16px">c</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span><span style="color:orange;font-weight:bold;font-size:16px">g</span><span style="color:#00cb00;font-weight:bold;font-size:16px">a</span>gugaaagugacguuuuugugauuaa</td>
+							<td class="small_font" style="padding-left:10px">3.427</td>
+							<td class="small_font" style="padding-left:10px">3.05e-04</td>
+						</tr>
+					</table>
+					<div style="padding-top:5px">
+						<a href="http://rbpmap.technion.ac.il/manual_example/sequence2/Predictions.txt" target="_blank">Download predictions summary as text file</a>
+					</div>
+				</div>
+				<table cellspacing="0">
+					<tr>
+						<td class="font2">Genome Browser visualization:</td>
+						<td style="padding-left:7px">
+							<a href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg19&position=chr6&hgt.customText=http://rbpmap.technion.ac.il/manual_example/sequence2/bedgraph.txt&ctfile_hg19=" target="_blank">Open the results in UCSC Genome Browser</a>
+						</td>
+						<td style="padding-left:7px" class="font2">Or</td>
+						<td style="padding-left:7px">
+							<a href="http://rbpmap.technion.ac.il/manual_example/sequence2/RBPmap_custom_tracks.txt" target="_blank">Download custom tracks in BedGraph format</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<script type="text/javascript">
+				var y = document.getElementById('download_all_div');
+				y.innerHTML = "<a href='http://rbpmap.technion.ac.il/manual_example/All_Predictions.txt' target='_blank'><b>Download</b></a> a summary of the binding sites predictions for all the sequences";
+				y.style.display = "block";
+			</script>
+
+			<div class="small_warning_font" style="margin-top:10px">
+				Note: the results will be kept on our server for one month.
+			</div>
+
+		</td>
+	</tr>
+
+	<tr>
+		<td class="left_bar"></td>
+		<td style="padding:0 20px 15px 20px">
+			<div style="border:thin #d8d8d8 solid;background-color:#f2f2f2;padding:5px;font-size:15px">
+				<span style="color:#4b4b4b;font-weight:bold">If you use RBPmap please cite:</span>
+				<span style="color:#000000">
+					Paz I, Kosti I, Ares M Jr, Cline M, Mandel-Gutfreund Y. (2014)
+					RBPmap: a web server for mapping binding sites of RNA-binding proteins. Nucleic Acids Res., 2014.
+				</span>
+				<a style="font-size:14px" href="../papers/Paz_2014.pdf" target="_blank">[PDF]</a>
+			</div>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="left_bar"></td>
+		<td style="padding:0 15px 10px 15px">
+			<div style="padding-top:5px;border-top:medium #d6d6d6 solid">
+				<a href="http://yaelab.technion.ac.il" target="_blank"><img alt="" src="../images/logos_60.png" style="border:none" /></a>
+			</div>
+			<div style="text-align:right;margin-top:5px" class="font2">This web site is supported by United States - Israel Binational Science Foundation</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="footer_font">
+			<script type="text/javascript" src="../footer.js"></script>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>
+

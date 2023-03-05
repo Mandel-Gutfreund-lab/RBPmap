@@ -1,0 +1,2557 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>RBPmap Motifs Selection</title>
+<link rel="stylesheet" type="text/css" href="RBPmap.css"/>
+
+<script type="text/javascript">
+
+// Open/close div block and switch between plus/minus
+function changeDisplay(blockID, imgID){
+	var block_elem = document.getElementById(blockID);
+	var img_elem = document.getElementById(imgID);
+	
+	if (block_elem.style.display == "none"){
+		block_elem.style.display = "block";
+		img_elem.src = "images/minus_14.png";
+		document.getElementById('top_submit_block').style.display = "block";
+	}
+	else{
+		block_elem.style.display = "none";
+		img_elem.src = "images/plus_14.png";
+		document.getElementById('top_submit_block').style.display = "none";
+	}
+}
+
+</script>
+
+<style type="text/css">
+.auto-style1 {
+	margin-top: 0px;
+}
+</style>
+
+</head>
+
+<body style="background-color:#ffffff; padding-left:20px">
+	<div class="title1" style="margin-top:15px">
+		RBPmap motifs list
+	</div>
+
+	<table style="margin-top:5px">
+
+		<tr>
+			<td>
+				<div class="font2">
+					<a href="javascript:changeDisplay('human_motifs_block', 'human_motifs_img')"><img id="human_motifs_img" alt="" src="images/plus_14.png" style="border:none" /></a>&nbsp;
+					Human / Mouse motifs
+				</div>
+				<div id="human_motifs_block" style="margin:5px 5px 5px 30px;display:none">
+					<table style="border:thin #d6d6d6 solid">
+						<tr style="background-color:#4b4b4b">
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white; height: 25px;">Protein Name</td>
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white; height: 25px;">Motifs</td>
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white; height: 25px;">References</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								A1CF
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/A1CF_wuaauur_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/A1CF_uaauua_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ANKHD1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ANKHD1_agacgww_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								BOLL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BOLL_guguua_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/BOLL_uuuguuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								BRUNOL4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BRUNOL4_kgugukk_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								BRUNOL5
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BRUNOL5_ugugukk_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								BRUNOL6
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BRUNOL6_ugugdkg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CELF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CELF1_aaugu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/CELF1_uauguuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CNOT4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CNOT4_gacaga_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/CNOT4_acacag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CPEB1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CPEB1_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CPEB2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CPEB2_chuuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CPEB4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CPEB4_uuuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								DAZ3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/DAZ3_acguuu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/DAZ3_aguuuu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/DAZ3_uuguuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								DAZAP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/DAZAP1_uagkwwr_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/DAZAP1_uauauag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 18391021, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								EIF4G2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/EIF4G2_cgccg_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/EIF4G2_gcgag_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/EIF4G2_gguugc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ELAVL4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ELAVL4_uaauu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/ELAVL4_uuauu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ENOX1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ENOX1_hrkacag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ESRP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ESRP1_gggugg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ESRP2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ESRP2_ugggrad_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								EWSR1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/EWSR1_aggug_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/EWSR1_gggggggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								FMR1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FMR1_kgacarg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								FUBP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUBP1_uauguau_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/FUBP1_uauuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								FUBP3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUBP3_uuaau_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/FUBP3_uauau_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/FUBP3_uuuau_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								FUS
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUS_cgcgc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/FUS_ggggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								FXR1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FXR1_aygacr_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								FXR2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FXR2_dgacrrr_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								G3BP2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/G3BP2_aggaudr_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPA0
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA0_auuagu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPA0_uauag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPA1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA1_duagggw_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPA1_guaguagu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPA1_rgnyag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 22574288</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPA1L2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA1L2_duagggw_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPA2B1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA2B1_gguaguag_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPA2B1_aggwuhgr_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPA2B1_duagggw_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPA2B1_gggua_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPA2B1_ggggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 22574288, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPC
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPC_huuuuuk_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPC_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPCL1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPCL1_huuuuuk_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPCL1_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPD
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPD_uauuaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPDL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPDL_uaaaa_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPDL_uauau_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPDL_uaauu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPF
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPF_gukgykg_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPF_gugkau_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPF_agggu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPF_gggagggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 22574288, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPH1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPH1_gargag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 22574288</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPH2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPH2_gggaggg_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPH2_gggggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPK
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPK_ccawmcc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPK_cacgc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPK_gccca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 19258514, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPL_acacrav_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPL_amayama_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/HNRNPL_uacaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 19124611, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRPLL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRPLL_rcahaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPM
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPM_gguugguu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 22574288</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HNRNPU
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPU_uguauug_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 22574288</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HuR
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HuR_uukruuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								IGF2BP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/IGF2BP1_auaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								IGF2BP2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/IGF2BP2_vmahwca_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/IGF2BP2_caacaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								IGF2BP3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/IGF2BP3_amahwca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ILF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ILF2_gggua_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/ILF2_gggugggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								KHDRBS1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHDRBS1_auaaaav_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								KHDRBS2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHDRBS2_rauaaam_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/KHDRBS2_aauaaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								KHDRBS3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHDRBS3_auaaav_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/KHDRBS3_aauaaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								KHSRP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHSRP_uguau_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/KHSRP_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								LIN28A
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/LIN28A_hggagwa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 19713957</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								MATR3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MATR3_maucuur_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								MBNL1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MBNL1_gcuugc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/MBNL1_cgcuu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/MBNL1_ugcua_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/MBNL1_gcgcagc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 17942744, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								MSI1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MSI1_uaguwrg_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/MSI1_uagca_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/MSI1_auuaguu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								NOVA1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/NOVA1_aucac_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/NOVA1_uucauaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								NUPL2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/NUPL2_caaagg_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/NUPL2_aaaauaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PABPC1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPC1_araaaam_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PABPC3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPC3_raaaacm_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PABPC4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPC4_aaaaaar_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PABPC5
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPC5_agaaadu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PABPN1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPN1_araaga_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PABPN1L
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPN1L_aaaaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PCBP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP1_ccwwhcc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/PCBP1_agcccc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 10075886, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PCBP2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP2_ccyycch_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/PCBP2_aaccc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/PCBP2_uuccc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/PCBP2_ccccacccc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 10075886, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PCBP3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP3_uuuycc_mouse.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PCBP4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP4_gucgg_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/PCBP4_auccccc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PPRC1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PPRC1_ssgcgcs_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PRR3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PRR3_auuac_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/PRR3_uauaag_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/PRR3_augaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PTB3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PTB3_cuuucu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PTBP3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PTBP3_cuuucu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PUF60
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUF60_ucucu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/PUF60_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PUM1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUM1_uguau_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/PUM1_uaaau_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PUM2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUM2_uguanaua_human.png" height="25px"/></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 20371350</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								QKI
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/QKI_acuaay_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 20371350</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RALY
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RALY_uuuuuub_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RALY_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBFOX1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBFOX1_wgcaugm_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBFOX2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBFOX2_gcaug_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBFOX3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBFOX3_gcaug_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM3_radacka_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM4_gcgcgss_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM4_gcgcgu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 19561594, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM4B
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM4B_acggga_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM4B_gcgcgg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM5
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM5_garggwr_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM6
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM6_hauccar_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM6_ccacc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM6_cgucca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM8A
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM8A_rygcgcb_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM15B
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM15B_uuuaa_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM15B_uuuuauuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM22
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM22_accgg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM23
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM23_ccccc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM24
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM24_wgwgugd_human.png" height="25px"/></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM24_ggggg_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM24_gugug_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM24_uuuuuuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM25
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM25_ggggag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM28
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM28_gwguagd_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM38
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM38_kkguguk_mouse.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM41
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM41_wuacwuk_human.png"class="motifs_td" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM41_uacuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM42
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM42_aacuamg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM45
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM45_gacgamv_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM45_acacc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM45_acgac_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM45_acgca_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM45_cuuac_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM46
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM46_rausawd_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBM47
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM47_ugauu_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBM47_uaauua_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBMS1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBMS1_kauauas_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBMS2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBMS2_auauaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBMS3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBMS3_hauaua_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RBMS3_auauau_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RC3H1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RC3H1_cuaug_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/RC3H1_uauauua_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SF1_uaauc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SF1_uuaaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SAMD4A
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SAMD4A_gckgghm_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SART3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SART3_araaaam_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SFPQ
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SFPQ_kurrukk_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SFPQ_uagug_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SFPQ_uguaag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SNRNP70
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SNRNP70_rwucaag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SNRPA
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SNRPA_wugcacr_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SNRPA_ugcaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRSF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF1_gragga_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 19561594</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRSF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF2_ggagwd_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SRSF2_uccag_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SRSF2_agcagc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 10094314, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRSF4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF4_agcag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRSF5
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF5_gcagc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SRSF5_gcccc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRSF7
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF7_acgacg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 10094314</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRSF8
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF8_agcagc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRSF9
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF9_akgavmr_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SRSF9_kgrwgsm_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SRSF9_gggaa_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SRSF9_aggag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 17548433, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRSF10
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF10_agagavm_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/SRSF10_cagcag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRSF11
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF11_agggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								TAF15
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TAF15_gggua_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/TAF15_ggggggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								TARDBP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TARDBP_gagug_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/TARDBP_guaug_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								TIA1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TIA1_uuuuubk_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/TIA1_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 16227602, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								TRA2A
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TRA2A_cugaaga_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								TRNAU1AP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TRNAU1AP_auuua_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/TRNAU1AP_uuuuauu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								TUT1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TUT1_mrauacu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 21102410</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								U2AF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/U2AF2_uuuuuyc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								UNK
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/UNK_uauaga_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/UNK_auuaguu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								YBX1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/YBX1_aacaucd_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 11222770</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								YBX2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/YBX2_aacawcd_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ZC3H10
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZC3H10_ssagcgm_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ZC3H14
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZC3H14_uuuduuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ZCRB1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZCRB1_grhuuaa_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/ZCRB1_auuaau_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ZFP36
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZFP36_uaaua_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/ZFP36_uauuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ZNF326
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZNF326_auucc_human.png" /></td>
+										<td class="motifs_td_second"><img alt="" src="images/motifs_updated/ZNF326_cuauaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ZNF638
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZNF638_bguusku_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<div class="font2">
+					<a href="javascript:changeDisplay('drosophila_motifs_block', 'drosophila_motifs_img')"><img id="drosophila_motifs_img" alt="" src="images/plus_14.png" style="border:none" /></a>&nbsp;
+					Drosophila motifs
+				</div>
+				<div id="drosophila_motifs_block" style="margin:5px 5px 5px 30px;display:none">
+					<table style="border:thin #d6d6d6 solid">
+						<tr style="background-color:#4b4b4b">
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white">Protein Name</td>
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white;width:150px">Motifs</td>
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white">References</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								A2BP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/A2BP1_ugcaug_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ARET
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ARET_ukukugu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								B52
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/B52_ggasgrv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								BRU-3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BRU-3_kugkugu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CG11360
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG11360_gagudw_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CG14718
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG14718_cagakb_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CG17838
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG17838_baaauud_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CG2931
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG2931_dacuaag_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CG2950
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG2950_cracgav_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CG33714
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG33714_bbgcgug_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CG5213
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG5213_urcuuu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CG7804
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG7804_wgkrugr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CG7903
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG7903_hwugcgr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CNOT4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CNOT4_asacahw_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								CPO
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CPO_wgcaca_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								EIF-2ALPHA
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/EIF-2ALPHA_wgcaug_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ELAV
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ELAV_uuudkuu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								FMR1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FMR1_ahggacr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								FNE
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FNE_uukdguu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HOW
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HOW_acuaacv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HRB27C
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HRB27C_uaggwwa_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HRB87F
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HRB87F_gguaggg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								HRB98DE
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HRB98DE_gguaggg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								LARK
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/LARK_dcgcgcg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								MOD
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MOD_aduggaa_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								MSI
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MSI_wguagkd_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								MUB
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MUB_waccckw_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ORB2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ORB2_kuuukkk_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PABP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABP_gaaaahv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PAPI
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PAPI_kgukugu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PUF68
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUF68_uawdrgr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								PUM
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUM_uguahak_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								QKR58E-1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/QKR58E-1_auaauwm_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBP1_wcaacrr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBP1-LIKE
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBP1-LIKE_aucadcr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RBP9
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBP9_uuddguu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								REF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/REF2_agaagrm_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RIN
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RIN_rrwugaw_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RNP4F
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RNP4F_agakarr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								ROX8
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ROX8_myauuuu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								RSF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RSF1_acgacgv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SF1_acuaayv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SF2_dggagga_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SHEP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SHEP_auauuwd_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SM
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SM_abacacv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SNF
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SNF_uwgcac_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>							
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SNRNP70K
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SNRNP70K_aucahg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SRP54
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRP54_kkrgg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								SXL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SXL_uuuuuuu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								TRA2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TRA2_vaagaa_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								U2AF50
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/U2AF50_uuuuuyy_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+
+	</table>
+
+
+</body>
+</html>
+

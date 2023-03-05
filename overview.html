@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>RBPmap - Motifs Analysis and Prediction of RNA Binding Proteins</title>
+<link rel="stylesheet" type="text/css" href="RBPmap.css"/>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+<script type="text/javascript" src="functions.js"></script>
+
+</head>
+
+<body>
+
+<table cellspacing="0" style="margin:0 auto;width:1100px;background-color:#ffffff">
+
+	<tr>
+		<td colspan="2" style="background-image:url('images/gray_gradient_1100.png');border-bottom: #4B4B4B solid 6px">
+			<script type="text/javascript" src="header.js"></script>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="left_bar">
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="index.html">Home</a></div>
+			<div class="menu_current"><a href="overview.html">Overview</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="manual.html">Manual</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="versions.html">Versions</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="download.html">Download</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="contact.html">Contact</a></div>
+		</td>
+
+		<td style="vertical-align:top;padding:20px 30px 20px 20px;height:550px">	
+			<div class="title1" style="text-decoration:underline">RBPmap Overview</div> 
+			<div style="margin-top:20px">
+				RBPmap is a computational tool that enables accurate prediction and mapping of RNA binding proteins (RBPs) binding sites 
+				on any RNA sequence or list of sequences of interest, provided by the users (as either sequences or genomic  coordinates). 
+				RBPmap has been developed specifically for mapping RBPs in human, mouse and drosophila melanogaster genomes, 
+				though it supports mapping RBP binding sites in other organisms too. 
+			</div>
+			<div style="margin-top:5px">
+				RBPmap enables the users to select motifs from a database of 223 human/mouse and 51 drosophila melanogaster experimentally defined motifs, 
+				extracted from the literature as a Position Specific Scoring Matrix (PSSM).
+				<a href="RBPmap_motif_list.html" onclick="return popup(this, 'RBPmap_motifs_list', '800', '800')">View RBPmap motifs list.</a>
+				In addition, the user can provide any motif of interest given as either a consensus (over IUPAC symbols) or a PSSM in MEME format. 
+			</div>
+			<div style="margin-top:5px">
+				The algorithm for mapping the motifs on the RNA sequences is based on the Weighted-Rank (WR) approach, 
+				previously exploited in the SFmap web-server for mapping splicing factor binding sites (<a href="http://sfmap.technion.ac.il" target="_blank">http://sfmap.technion.ac.il</a>). 
+				The mapping algorithm considers the clustering propensity of the motif and the overall tendency of regulatory region to be conserved 
+				(<a href="papers/Akerman_2009.pdf" target="_blank">Akerman et al., Genome Biology 2009</a>). 
+			</div>
+			<div class="title1" style="margin-top:10px;font-size:18px;text-decoration:underline">
+				A detailed description of RBPmap algorithm:
+			</div>
+			<ul style="line-height:22px;margin-top:5px;margin-bottom:10px">
+				<li><a href="#sequence">Processing the query sequence (for human, mouse and Drosophila genomes)</a></li>
+				<li><a href="#match_score">Calculating a match score for the motif</a></li>
+				<li><a href="#comp_match_bg">Comparing the match scores to a background model</a></li>
+				<li><a href="#WR_score">Calculating a Weighted Rank (WR) score for windows around each putative binding site</a></li>
+				<li><a href="#comp_WR_bg">Comparing the WR scores to a region-specific background model</a></li>
+				<li><a href="#conservation">Conservation-based filtering</a></li>
+			</ul>
+			<div>
+				<a name="sequence" class="font5" style="font-style:italic">Processing the query sequence (for human, mouse and Drosophila genomes)</a><br />
+				The mandatory input parameters for RBPmap are a query sequence and at least one motif 
+				of interest to be mapped to the sequence. The query sequence can be provided as a 
+				sequence in FASTA format or as genomic coordinates.  In case  the query sequence is provided in FASTA 
+				format, RBPmap uses the <a href="http://genome.ucsc.edu/cgi-bin/hgBlat" target="_blank">BLAT</a> utility to map  the sequence to the chosen genome 
+				and retrieve the genomic coordinates.  The sequence is then expanded by 25nts  upstream 
+				and downstream to include the sequence environment in the  WR calculation (see below).
+				<br />
+				Further, the sequence is mapped to  the genome and categorized to one of five  different
+				genomic regions:  intronic regions flanking the  splice sites  (80nts  long), internal exons, 
+				exons in 5’ and 3’ UTR regions, non-coding RNA and mid-intron/intergenic regions. The 
+				category of the sequence is further used to choose  the region-specific background model 
+				(see below).
+			</div>
+			<div style="margin-top:5px">
+				<a name="match_score" class="font5" style="font-style:italic">Calculating a match score for the motif</a><br />
+				Given a  query sequence and a  motif (defined as  either a consensus  sequence  or a PSSM, 
+				selected from RBPmap  database or provided by the user),  a  match score for the motif is 
+				calculated for each  k-mer  of the motif size  in the query sequence,  in overlapping 
+				windows.  The match score <b>S<sub>consensus</sub></b>,  for motif  provided as a  consensus sequence,  is 
+				defined as following:<br />
+				<img alt="" src="images/consensus_score_equation.jpg" style="height:50px" /><br />
+				Where L is the motif length and H is the Hamming distance between each k-mer and the motif. <br />
+				The match score <b>S<sub>pssm</sub></b>, for a PSSM (Position Specific Scoring Matrix), is defined as following:<br />
+				<img alt="" src="images/PSSM_score_equation.jpg" style="height:70px" /><br />
+				Where L is the motif length, Ni is the specific nucleotide in position i and f(Ni) is the frequency of the nucleotide as defined in the PSSM. 
+				<br />
+				The values of both match scores range between 0 and 1, increasing as the distance between the motif and the k-mer decreases.
+			</div>
+			<div style="margin-top:5px">
+				<a name="comp_match_bg"  class="font5" style="font-style:italic">Comparing the match scores to a background model</a><br />
+				For defining a significant match, the match scores of all the sites in the query sequence are compared to the mean match score for the motif calculated for a background of randomly chosen regulatory regions 
+				(composed of exonic and intronic regions around splice-sites and exons in UTR regions). 
+				Z-scores are calculated and coupled to a P-value, which represents the probability of obtaining a specific Z-score considering a normal one-tailed distribution. 
+				The sites are filtered according to two thresholds (set by the user as the stringency level parameter): 
+				<b>significant threshold</b> (default P-value&lt;0.01) and <b>suboptimal threshold</b> (default P-value&lt;0.02). 
+				The significant threshold is used to define the putative binding site 
+				and the suboptimal threshold, which is less stringent, filters the sites that are clustered around the putative binding site and will be considered in the Weighted Rank (WR) score (see below).
+			</div>
+			<div style="margin-top:5px">
+				<a name="WR_score" class="font5" style="font-style:italic">Calculating a Weighted Rank (WR) score for windows around each putative binding site</a><br />
+				In order to calculate a multiplicity score, which reflects the propensity of suboptimal motifs to cluster around the significant motif, 
+				a Weighted Rank (WR) function is employed. 
+				The WR score is calculated for each candidate significant site, by summing up all suboptimal match scores within a window of 50nts around the site (25nts of each side), 
+				weighted by their match to the motif of interest (the significant site is ranked first). 
+				The WR score <b>S<sub>WR</sub></b> is defined as following:<br/>
+				<img alt="" src="images/WR_score_equation.jpg" style="height:75px" /><br />
+				Where rank<sub>max</sub> is the number of suboptimal sites within the 50nts window 
+				and S<sub>rank</sub> is the match score of each ranked suboptimal site.
+			</div>
+			<div style="margin-top:5px">
+				<a name="comp_WR_bg" class="font5" style="font-style:italic">Comparing the WR scores to a region-specific background model</a><br />
+				In order to reduce the false positive predictions, the final WR scores are compared to a background model, 
+				which is calculated independently for 5 different genomic regions (see above). 
+				The WR score of each putative binding site is compared to the mean WR score of its pre-defined genomic region. 
+				Z-scores are calculated and coupled to a P-value, which represents the probability of obtaining a specific Z-score considering a normal one-tailed distribution. 
+				The sites are reported as predicted binding sites if their P-value&lt;0.05. 
+				The Z-score and P-value of the predicted binding sites are reported in the output of RBPmap. 
+			</div>
+			<div style="margin-top:5px">
+				<a name="conservation" class="font5" style="font-style:italic">Conservation-based filtering</a><br />
+				The conservation-based filtering is optional and can be applied only to binding sites that are mapped to intronic/intergenic regions. 
+				It is based on the tendency of regulatory regions to be evolutionary conserved. 
+				These sites are removed from the final results if the mean conservation score calculated for their window is lower than the mean conservation score calculated for intronic regulatory regions. 
+				For sequences from human and mouse, the conservation information is retrieved from the UCSC phyloP conservation table 
+				(Siepel et al., Genome Res. 2005), based on the conservation of all placental mammals. 
+				For Drosophila sequences we use the phastCons insect conservation table (Siepel et al., Genome Res. 2005). 
+				Conservation filtering can be applied only for input sequences from human mouse or Drosophila.
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="left_bar"></td>
+		<td style="padding:0 15px 10px 15px;">
+			<script type="text/javascript" src="ref_logos.js"></script>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2" class="footer_font">
+			<script type="text/javascript" src="footer.js"></script>
+		</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

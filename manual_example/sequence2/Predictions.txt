@@ -1,0 +1,43 @@
+
+Predictions for sequence: chr6:161990246-161990559:-
+Calculation parameters:
+Genome: Human (hg19)
+Selected motifs: HNRNPA1(Hs/Mm):duagggw, HNRNPA1(Hs/Mm):guaguagu, HNRNPA1(Hs/Mm):rgnyag, HNRNPA2B1(Hs/Mm):duagggw, HNRNPA2B1(Hs/Mm):gguaguag, HNRNPA2B1(Hs/Mm):aggwuhgr, HNRNPC(Hs/Mm):huuuuuk, HNRNPF(Hs/Mm):gugkau, HNRNPF(Hs/Mm):gukgykg, HNRNPF(Hs/Mm):gggug, HNRNPH1(Hs/Mm):gargag, HNRNPK(Hs/Mm):ccawmcc, HNRNPL(Hs/Mm):amayama, HNRNPL(Hs/Mm):acacrav, HNRNPM(Hs/Mm):gguugguu, HNRNPU(Hs/Mm):uguauug
+Stringency level: Medium
+Conservation filter: On
+======================================================================================================================
+
+Protein: HNRNPA1(Hs/Mm)
+Sequence Position	Genomic Coordinate	Motif     	K-mer     	Z-score	P-value 
+229              	chr6:161990331    	rgnyag    	agacag    	2.648  	4.05e-03
+
+Protein: HNRNPA2B1(Hs/Mm)
+Sequence Position	Genomic Coordinate	Motif     	K-mer     	Z-score	P-value 
+213              	chr6:161990347    	aggwuhgr  	aagauaga  	2.509  	6.05e-03
+
+Protein: HNRNPC(Hs/Mm)
+Sequence Position	Genomic Coordinate	Motif     	K-mer     	Z-score	P-value 
+81               	chr6:161990479    	huuuuuk   	cguuuuu   	1.899  	2.88e-02
+82               	chr6:161990478    	huuuuuk   	guuuuug   	2.070  	1.92e-02
+83               	chr6:161990477    	huuuuuk   	uuuuugu   	1.891  	2.93e-02
+95               	chr6:161990465    	huuuuuk   	auucuuc   	1.899  	2.88e-02
+98               	chr6:161990462    	huuuuuk   	cuucuuu   	1.899  	2.88e-02
+
+Protein: HNRNPF(Hs/Mm)
+Sequence Position	Genomic Coordinate	Motif     	K-mer     	Z-score	P-value 
+161              	chr6:161990399    	gggug     	gggag     	1.676  	4.69e-02
+172              	chr6:161990388    	gggug     	aggug     	2.139  	1.62e-02
+176              	chr6:161990384    	gggug     	gagug     	2.009  	2.23e-02
+
+Protein: HNRNPH1(Hs/Mm)
+Sequence Position	Genomic Coordinate	Motif     	K-mer     	Z-score	P-value 
+165              	chr6:161990395    	gargag    	gaagag    	2.626  	4.32e-03
+
+Protein: HNRNPK(Hs/Mm)
+Sequence Position	Genomic Coordinate	Motif     	K-mer     	Z-score	P-value 
+121              	chr6:161990439    	ccawmcc   	ccaacuc   	2.388  	8.47e-03
+
+Protein: HNRNPL(Hs/Mm)
+Sequence Position	Genomic Coordinate	Motif     	K-mer     	Z-score	P-value 
+54               	chr6:161990506    	amayama   	acauaua   	3.107  	9.45e-04
+62               	chr6:161990498    	amayama   	ccacaca   	3.480  	2.51e-04

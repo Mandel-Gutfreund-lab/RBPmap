@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>RBPmap - Motifs Analysis and Prediction of RNA Binding Proteins</title>
+<link rel="stylesheet" type="text/css" href="RBPmap.css"/>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+<script type="text/javascript" src="functions.js"></script>
+
+</head>
+
+<body>
+
+<table cellspacing="0" style="margin:0 auto;width:1100px;background-color:#ffffff">
+
+	<tr>
+		<td colspan="2" style="background-image:url('images/gray_gradient_1100.png');border-bottom: #4B4B4B solid 6px">
+			<script type="text/javascript" src="header.js"></script>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="left_bar">
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="index.html">Home</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="overview.html">Overview</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="manual.html">Manual</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="versions.html">Versions</a></div>
+			<div class="menu_current"><a href="download.html">Download</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="contact.html">Contact</a></div>
+		</td>
+		
+		<td style="vertical-align:top;padding:20px 30px 20px 20px">		
+			<div class="title1" style="text-decoration:underline">Download a stand-alone version of RBPmap</div>
+			
+			<ul style="line-height:22px">
+				<li><a href="#requirements">Requirements</a></li>
+				<li><a href="#download">Download files</a></li>
+				<li><a href="#install">Installation and configuration</a></li>
+				<li><a href="#usage">Usage</a></li>
+				<li><a href="#results">Results</a></li>
+			</ul>
+			
+			<div class="title1" style="margin-bottom:7px;font-size:20px;"><a name="requirements">Requirements</a></div>
+			<ul style="margin-top:5px;margin-bottom:0">
+				<li>Linux operating system</li>
+				<li style="margin-top:2px">Disk space: 20-30Gb (Depends on the number of genomes).</li>
+				<li style="margin-top:2px">Perl (including the following special modules: <a href="http://search.cpan.org/~timb/DBI-1.634/DBI.pm" target="_blank">DBI</a>, 
+				<a href="http://search.cpan.org/~mikek/Statistics-Distributions-1.02/Distributions.pm" target="_blank">Statistics::Distributions</a> 
+				and <a href="http://search.cpan.org/~sifukurt/Math-NumberCruncher-5.00/NumberCruncher.pod" target="_blank">Math::NumberCruncher</a>).</li>
+				<li style="margin-top:2px">MySQL server (<a href="http://dev.mysql.com/doc/refman/5.7/en/linux-installation.html" target="_blank">http://dev.mysql.com/doc/refman/5.7/en/linux-installation.html</a>)</li>
+			</ul>
+			
+			<div class="title1" style="margin-bottom:7px;margin-top:10px;font-size:20px;"><a name="download">Download the following files:</a></div>
+			<ol style="margin-top:5px;margin-bottom:0">
+				<li><a href="source/RBPmap_1.2.tar.gz">RBPmap package</a> (including RBPmap scripts and UCSC files and utilities)</li>
+				<li style="margin-top:2px"><a href="source/RBPmap_1.2_MySQL_dump.sql">RBPmap MySQL dump file</a></li>
+			</ol>
+			
+			<div class="title1" style="margin-bottom:7px;margin-top:10px;font-size:20px;"><a name="install">Installation and configuration</a></div>
+			<div class="font2">Installation and configuration of RBPmap package:</div>
+			<ol style="margin-top:5px;margin-bottom:0">
+				<li>Untar RBPmap package ('tar -zxvf RBPmap_1.2.tar.gz' will extract it to the current directory). The package includes:
+					<ul>
+						<li>RBPmap scripts.</li>
+						<li>A sub-directory named 'RBP_PSSMs' which contains the PSSM motifs stored in RBPmap database (a file per each motif).</li>
+						<li>A sub-directory named 'UCSC' which contains several utilities needed for RBPmap run.</li>
+						<li>Under the 'UCSC' directory, a directory for each database assembly that is supported by RBPmap.</li>
+					</ul>
+				</li>
+				<li style="margin-top:2px">Add execution permissions ('chmod +x') to the following files:<br />
+					<ul>
+						<li><span class="font3">RBPmap.pl</span></li>
+						<li><span class="font3">UCSC/nibFrag</span></li>
+						<li><span class="font3">UCSC/faToNib</span></li>
+						<li><span class="font3">hgWiggle</span> (UCSC/hg19/hgWiggle, UCSC/hg18/hgWiggle, etc...)</li>
+					</ul>
+				</li>
+				<li style="margin-top:2px">Open the main script, <span class="font3">RBPmap.pl</span>, and fill the variables at the top section with the correct paths of your environment:
+					<ul>
+						<li><span class="font3">$scripts_dir</span> - An absolute path to the main directory of RBPmap (in which the scripts are located).</li>
+						<li><span class="font3">$results_dir</span> - An absolute path to the main directory under which the results sub-directories will be created. Add writing permissions to this directory ('chmod +w').</li>
+					</ul>
+				</li>
+				<li style="margin-top:2px">
+					Create a file named '.hg.conf' under your home directory (it is needed for the hgWiggle command, used when applying the conservation-based filtering). 
+					This file should contain the following lines :<br /> 
+					<span class="font3">
+					db.host=genome-mysql.cse.ucsc.edu<br />
+					db.user=genomep<br />
+					db.password=password
+					central.db=hgcentral
+					</span>
+				</li>
+			</ol>
+			
+			<div class="font2" style="margin-top:7px">Create and configure RBPmap MySQL database:</div>
+			<ol style="margin-top:5px;margin-bottom:0">
+				<!--<li>Untar the compressed dump file <span class="font3">RBPmap_1.0_MySQL_dump.sql.tar.gz</span>.</li>-->
+				<li style="margin-top:2px">Run the SQL script <span class="font3">RBPmap_1.2_MySQL_dump.sql</span> to create all RBPmap schemas and tables. 
+					(This can be done using the command-line or a designated tool, such as 'MySQL Workbench').
+				</li>
+				<li style="margin-top:2px">
+					Create a file named <span class="font3">.my.cnf</span> under RBPmap main directory. This file should store the user and password parameters using to connect to MySQL.
+					The .my.cnf file should be of the following format:<br />
+					<span class="font3">
+						[client]<br />
+						user=&lt;user&gt;<br />
+						password=&lt;password&gt;<br />
+					</span>
+					Protect this file with the following permissions: <span class="font3">chmod 600 .my.cnf</span>.
+				</li>
+				<li style="margin-top:2px">In <span class="font3">RBPmap.pl</span> script, fill the parameters required to connect to your MySQL server (stored in <span class="font3">%mysql</span> variable).</li>
+			</ol>
+			
+			<div class="font2" style="margin-top:7px">Install the desired genomes from UCSC genome browser:</div>
+			<div style="margin-top:5px">
+				The database assemblies, on which RBPmap search is performed, have to be installed locally.
+				They should be located under the 'UCSC' directory (for example, under: <span class="font3">UCSC/hg19/</span>). 
+				Download and install the desired genomes as following:
+				<ol style="margin-top:5px;margin-bottom:0">
+					<li>Go to UCSC FTP site: <a href="ftp://hgdownload.cse.ucsc.edu/goldenPath/" target="_blank">ftp://hgdownload.cse.ucsc.edu/goldenPath/</a></li>
+					<li style="margin-top:2px">Download the chromosomes in FASTA format (.fa.gz, only the regular ones).<br /> 
+						For example: <a href="ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/" target="_blank">ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/</a>
+					</li>
+					<li style="margin-top:2px">Use the <span class="font3">faToNib</span> utility to translate the FASTA files (.fa) into NIB files (.nib), needed for RBPmap run.<br />
+						For example: <span class="font3">faToNib chr1.fa chr1.nib</span>
+					</li>
+				</ol>	
+			</div>
+			
+			<div class="font5" style="margin-bottom:7px;margin-top:10px;font-size:20px"><a name="usage">Usage</a></div>
+			<div style="margin-top:5px">
+				<span class="font3">perl RBPmap.pl -input &lt;input file path&gt; [options]</span>
+			</div>
+			<div class="font2" style="margin-top:7px">Input (mandatory):</div>
+			<ul style="margin-bottom:0;margin-top:5px">
+				<li>
+					<span class="font3">-input &lt;input file&gt;</span>: A path (absolute or relative) to the input file, containing at least one sequence in genomic coordinates format: 'chromosome':'start'-'end':'strand' <a href="manual_example/coor_example.txt" target="_blank">(view example)</a>.
+					<!--<br /><span class="font3">Note:</span> In order to use the FASTA format option, instead of genomic coordinates, you have to install a local BLAT server (gfServer). -->
+				</li>
+			</ul>
+			
+			<div class="font2" style="margin-top:7px">Optional flags:</div>
+			<ul style="margin-bottom:0;margin-top:5px">
+				<li><span class="font3">-help</span>: Print RBPmap manual.</li>
+			</ul>
+			
+			<div class="font4" style="margin-top:5px;margin-left:10px">Genome Selection:</div>
+			<ul style="margin-bottom:0;margin-top:5px">
+				<li><span class="font3">-genome &lt;'human'/'mouse'/'drosophila'&gt;</span>: The genome of the query sequences (default is 'human').</li>
+				<li style="margin-top:2px"><span class="font3">-db &lt;'hg38'/'hg19'/'hg18'/'mm10'/'mm9'/'dm3'&gt;</span>: The database assembly of the query sequences (should fit the genome).</li>
+			</ul>
+			
+			<div class="font4" style="margin-top:5px;margin-left:10px">Motif Selection:</div>
+			<ul style="margin-bottom:0;margin-top:5px">
+				<li>
+					<span class="font3">-db_motifs &lt;options&gt;</span>: Select one or more motifs from RBPmap database (default is 'all_human' - all RBPmap motifs). Available options:
+					<ul>
+						<li><span class="font3">'all'</span>: All RBPmap stored motifs.</li>
+						<li style="margin-top:2px"><span class="font3">'all_human'</span>: All RBPmap human/mouse stored motifs.</li>
+						<li style="margin-top:2px"><span class="font3">'all_drosophila'</span>: All RBPmap drosophila stored motifs.</li>
+						<li style="margin-top:2px"><span class="font3">
+							&lt;protein1,protein2,...&gt;</span>: Select all the motifs of the mentioned proteins names. The protein names should be separated by commas, without spaces, case insensitive. 
+							<a href="RBPmap_motif_list.html" onclick="return popup(this, 'RBPmap_motifs_list', '800', '800')">(View RBPmap motifs list)</a>.<br />
+							For example: <span class="font3">-db_motifs HNRNPA1,HNRNPF,HNRNPH1</span>
+						</li>
+						<li style="margin-top:2px"><span class="font3">'none'</span>: None of RBPmap stored motifs (requires providing user-defined motifs).</li>
+					</ul>
+				</li>
+				<li style="margin-top:2px">
+					<span class="font3">-consensus &lt;protein1:motif1,protein2:motif2,...&gt;</span>: 
+					An option to provide one or more user-defined consensus motifs. Valid motifs are 4-10 characters long and contain IUPAC symbols only, no spaces between the motifs.<br />
+					For example: <span class="font3">-consensus PTBP1:cucucu,MBNL1:ygcuky</span>
+				</li>
+				<li style="margin-top:2px">
+					<span class="font3">-pssm &lt;probability matrix file path&gt;</span>: An option to provide one or more user-defined PSSM motifs. The matrix file should be written in MEME format <a href="manual_example/QK1_PSSM.txt" target="_blank">(view example)</a>..
+				</li>
+			</ul>
+			
+			<div class="font4" style="margin-top:5px;margin-left:10px">Advanced Options:</div>
+			<ul style="margin-bottom:0;margin-top:5px">
+				<li><span class="font3">-stringency &lt;'high'/'default'&gt;</span>: Control the stringency level of the results.</li>
+				<li style="margin-top:2px"><span class="font3">-conservation &lt;'on'/'off'&gt;</span>: Apply a conservation-based filter on intergenic regions (default is: 'off').</li>
+			</ul>
+			
+			<div class="font4" style="margin-top:5px;margin-left:10px">General Options:</div>
+			<ul style="margin-bottom:0;margin-top:5px">
+				<li><span class="font3">-job_name &lt;name&gt;</span>: A name for the output directory of the job, without spaces (default is timestamp).</li>
+				<li style="margin-top:2px"><span class="font3">-delete_fasta &lt;'on'/'off'&gt;</span>: Delete the intermediate fasta files which are created during RBPmap run (default is 'on').</li>
+			</ul>
+			
+			<div class="font5" style="margin-bottom:7px;margin-top:10px;font-size:20px"><a name="results">Results</a></div>
+			<div style="margin-top:5px">
+				The intermediate and output files of each RBPmap job will be created in a sub-directory named by the 'job_name' parameter, under the main results directory (defined in the variable $results_dir inside RBPmap.pl).
+			</div>
+			<ul style="margin-top:5px;margin-bottom:0">
+				<li><span class="font3">All_Predictions.txt</span>: The main predictions summary file, containing the predictions for all the sequences submitted in the same job. It is located under the results directory created for the job.</li>
+				<li style="margin-top:2px">
+					Output files for each sequence. These files are located under the sub-directories, created for each sequence (named 'sequence1', 'sequence2', etc...):
+					<ol style="margin-top:5px;margin-bottom:0">
+						<li><span class="font3">Predictions.txt</span>: A text file containing the predictions for the sequence.</li>
+						<li style="margin-top:2px"><span class="font3">
+							RBPmap_custom_tracks.txt</span>: RBPmap binding sites predictions in BedGraph format. 
+							This file can be uploaded to UCSC Genome Browser to visualize the results as custom tracks.</li>
+					</ol>
+				</li>
+			</ul>
+			<div style="margin-top:5px">For more information about RBPmap output files, see <a href="http://rbpmap.technion.ac.il/manual.html#results" target="_blank">RBPmap manual</a>.</div>
+			
+		</td>
+	</tr>
+	<tr>
+		<td class="left_bar"></td>
+		<td style="padding:0 15px 10px 15px;">
+			<script type="text/javascript" src="ref_logos.js"></script>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="footer_font">
+			<script type="text/javascript" src="footer.js"></script>
+		</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

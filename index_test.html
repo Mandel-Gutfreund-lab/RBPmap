@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>RBPmap - Motifs Analysis and Prediction of RNA Binding Proteins</title>
+<link rel="stylesheet" type="text/css" href="RBPmap.css"/>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="functions.js"></script>
+
+</head>
+
+<body>
+
+<table cellspacing="0" style="margin:0 auto;width:1100px;background-color:#ffffff">
+
+	<tr>
+		<td colspan="2" style="background-image:url('images/gray_gradient_1100.png');border-bottom: #4B4B4B solid 6px">
+			<script type="text/javascript" src="header.js"></script>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="left_bar">
+			<div class="menu_current"><a href="index_DEV.html">Home</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="overview.html">Overview</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="manual.html">Manual</a></div>
+			<div class="menu" onmouseover="this.className='menu_over'" onmouseout="this.className='menu'"><a href="contact.html">Contact</a></div>
+		</td>
+		<td style="vertical-align:top;padding:5px 15px 0 15px">		
+			<form method="post" enctype="multipart/form-data" action="/cgi-bin/SFmap/RBPmap_test.cgi" name="RBPmap_form" onsubmit="return Validate()">
+			<table style="width:100%;background-color:#ffffff">
+				<tr>
+					<td>
+						<div class="font5">Input (mandatory) <a href="manual.html#input" target="_blank"><img style="border:none" alt="" src="images/question_mark_15.png" /></a></div>
+						<div style="border:thin #d8d8d8 solid;background-color:#f2f2f2;padding:0px 5px 5px 5px">
+							<div class="font2" style="padding:5px 0 2px 5px">
+								Genome:
+								<select style="color:black;font-size:15px" name="genome" id="GENOME" onchange="SetByGenome()">	
+									<option value="human">Human</option>
+									<option value="mouse">Mouse</option>
+									<option value="drosophila">D. Melanogaster</option>
+									<option value="other">Other</option>
+								</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<span class="font2" id="DB">Database assembly:</span> 
+								<select style="color:black;font-size:15px" name="db">
+									<option value="hg19">Feb. 2009 (GRCh37/hg19)</option>     
+									<option value="hg18">Mar. 2006 (NCBI36/hg18)</option>
+								</select>
+
+							</div>
+				
+							<div style="padding:5px 5px 0 5px">
+								<div>
+									<span class="font2">Query sequences/coordinates</span> 
+									<!--<a href="javascript:changeDisplayHelp('input_help_block')"><img style="border:none" alt="" src="images/question_mark_15.png" /></a>-->
+									<span class="small_warning_font">
+										In FASTA format <a href="manual_example/example.fasta" target="_blank">(view example)</a>
+										or genomic coordinates <a href="manual_example/coor_example.txt" target="_blank">(view example)</a> respectively.
+									</span> 
+								</div>
+								<div style="padding: 2px 0 0 5px">
+									<input type="radio" name="seq_method" value="text" checked="checked" onclick="document.RBPmap_form.sequence.disabled=false; document.RBPmap_form.seq_file.disabled=true" />
+									Paste your sequences/coordinates here:<br />
+									<textarea name="sequence" rows="2" cols="60" style="margin-left:25px"></textarea>
+								</div>
+								<div style="padding: 2px 0 0 5px">
+									<input type="radio" name="seq_method" value="file" onclick="document.RBPmap_form.seq_file.disabled=false; document.RBPmap_form.sequence.disabled=true" />
+									Or, upload a file:
+									<input type="file" name="seq_file" value="" disabled="disabled" />
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding:7px 0 0 0">
+						<div class="font5">Motif selection (mandatory) <a href="manual.html#motifs" target="_blank"><img style="border:none" alt="" src="images/question_mark_15.png" /></a></div>
+						<div id="motifs_block" style="border:thin #d8d8d8 solid;background-color:#f2f2f2;padding:0px 5px 5px 5px;">
+							<div style="padding:5px 0 0 5px">
+								<div class="font2">
+									Search RBPmap motifs database:
+									<span class="small_warning_font">(To view the search results, the browser's pop-up blocking should be turned off)</span>
+								</div>
+								<div style="margin-top:3px;">
+									<div>
+										<input type="radio" name="db_selection" checked="checked" onclick="document.getElementById('PROTEIN_NAME').disabled=false;document.getElementById('search_protein_button').disabled=false" /> Enter an RNA binding protein name, symbol or common alias:
+										<input type="text" id="PROTEIN_NAME" /> 
+										<input type="button" value="Search" id="search_protein_button" />
+									</div>
+									<script type="text/javascript">
+										// jQuery code to run 'get_motifs_for_protein.cgi' script and get the relevant motifs
+										$(document).ready(function(){
+									  		$("#search_protein_button").click(function(){
+									  			var status = window.validateSearch();
+									  			if (status){
+    												$.ajax({
+														type: "POST", 
+														url: "/cgi-bin/SFmap/get_motifs_for_protein.cgi",
+														data: {
+     														protein_name:$("#PROTEIN_NAME").val(),
+      														genome:$("#GENOME").val()
+  														},
+  														dataType: "json",
+														success: function(result){
+															var url = result.url;
+															var is_found = result.found_query;
+															if (is_found == 1){
+     															return popup(url, 'RBPmap_motifs_selection', '1100', '250');
+     														}
+     														else {
+     															return popup(url, 'RBPmap_motifs_selection', '950', '900');
+     														}
+  														},
+  														error: function(){
+  															return popup("RBPmap_motif_selection_DEV.html", 'RBPmap_motifs_selection', '950', '900');
+  														}	
+													});
+												};
+  											});
+										});
+									</script>
+									
+									<div>
+										<input type="radio" name="db_selection" onclick="document.getElementById('PROTEIN_NAME').disabled=true;document.getElementById('search_protein_button').disabled=true" /> Or, <a href="RBPmap_motif_selection_DEV.html" onclick="return popup(this, 'RBPmap_motifs_selection', '950', '900')">Click here</a> to select motifs from RBPmap full list.
+										
+										<input type="text" name="motifs_selection" value="" style="border:none;background-color:#f2f2f2;visibility:hidden" />
+									</div>
+								
+									<div id="selection" style="visibility:hidden;font-size:12px"></div>
+								</div>
+							</div>
+							<div style="margin-top:10px;margin-left:20px;width:200px;border-top:thin #c8c8c8 solid"></div>
+							<div style="padding:10px 0 0 5px;">
+								<div class="font2">Choose your own motifs (optional):</div>
+								<div id="user_motifs_block">
+									<div style="margin-top:3px">
+										<input type="checkbox" name="is_user_consensus" value="on" onclick="if(this.checked==true){document.RBPmap_form.new_motif.disabled=false;RBPmap_form.new_motif_name.disabled=false;document.RBPmap_form.add_motifs_button.disabled=false;}else{document.RBPmap_form.new_motif.disabled=true;document.RBPmap_form.new_motif_name.disabled=true;document.RBPmap_form.add_motifs_button.disabled=true;}" />
+										Enter a consensus motif<span class="small_font"> (4-10 bp long, IUPAC symbols only)</span>:
+									</div>
+									<div id="new_motifs" style="margin:5px 0 5px 27px">
+										1.&nbsp;&nbsp;Motif: <input type="text" name="new_motif" disabled="disabled" />&nbsp;&nbsp;&nbsp;
+										Protein name: <input type="text" name="new_motif_name" value="User1" disabled="disabled" />
+									</div>
+									<div>
+										<span style="margin-left:27px"><input type="button" name="add_motifs_button" value="Add another motif" onclick="addInput('new_motifs')" disabled="disabled" /></span>
+									</div>
+									<div style="margin-top:8px"> 
+										<input type="checkbox" name="is_user_pssm" value="on" onclick="if(this.checked==true){document.RBPmap_form.pssm_file.disabled=false;}else{document.RBPmap_form.pssm_file.disabled=true}" />
+										<span id="matrix_file">Upload a probability matrix file <span class="small_font">(<a href="manual_example/QK1_PSSM.txt" target="_blank">in MEME format</a>)</span>:</span>&nbsp;&nbsp;
+										<input type="file" name="pssm_file" value="" disabled="disabled" />
+									</div>
+								</div>	
+							</div>
+						</div>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="padding:7px 0 0 0">
+						<div class="font5"><a href="javascript:changeDisplay('advanced_block', 'advanced_img')"><img id="advanced_img" alt="" src="images/plus_14.png" /> Advanced options (optional)</a> <a href="manual.html#advanced" target="_blank"><img style="border:none" alt="" src="images/question_mark_15.png" /></a></div>
+						<div id="advanced_block" style="border:thin #d8d8d8 solid;background-color:#f2f2f2;padding:0px 5px 5px 5px;display:none">
+							<div style="padding:5px 0 0 5px">
+								<span class="font2">Stringency level:</span> 
+								<select style="color:black;font-size:15px" name="stringency"> 
+									<option value="high">High stringency</option>
+									<option value="medium" selected="selected">Medium stringency</option>
+									<option value="low">Low stringency</option>
+								</select>
+							</div>
+							<div style="padding:5px 0 0 5px">
+								<input type="checkbox" name="is_conservation" value="on" checked="checked" disabled="disabled" /> 
+								<span class="disabled_font" id="CONSERVATION">Apply conservation filter (recommended)</span>
+							</div>
+							
+							<div style="padding:5px 0 0 5px">
+								<span class="font2">Scoring method:</span> 
+								<select style="color:black;font-size:15px" name="validations" onchange="if (this.options[this.selectedIndex].value=='match'){Disable(document.RBPmap_form.is_conservation, 'CONSERVATION', 'disabled_font');} else{Enable(document.RBPmap_form.is_conservation, 'CONSERVATION', 'font2');}"> 
+									<option value="match">Match score + significant threshold filtering</option>
+									<option value="WR">WR score + PSBM cutoff filtering</option>
+								</select>							
+							</div>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="padding:7px 0 0 0">
+						<div class="font5"><a href="javascript:changeDisplay('general_block', 'general_img')"><img id="general_img" alt="" src="images/plus_14.png" /> Job submission options (optional)</a> <a href="manual.html#general" target="_blank"><img alt="" src="images/question_mark_15.png" /></a></div>
+						<div id="general_block" style="border:thin #d8d8d8 solid;background-color:#f2f2f2;padding:0px 5px 5px 5px;display:none">
+							<div style="padding:5px 0 0 5px" class="font2">
+								<input type="checkbox" name="is_email" value="TRUE" onclick="if(this.checked==true){document.RBPmap_form.email.disabled=false;}else{document.RBPmap_form.email.disabled=true}" />
+								E-mail address: <input type="text" name="email" size="30" disabled="disabled" /><span class="small_warning_font"> (A link to the results will be sent to this address)</span>
+							</div>
+							<div style="padding:5px 0 0 5px" class="font2">
+								Enter a name for the current job: <input type="text" name="job_name" size="30" />
+							</div>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="padding:7px 0 0 0">
+						<div class="font5"><a href="javascript:changeDisplay('sample_block', 'sample_img')"><img id="sample_img" alt="" src="images/plus_14.png" /> Sample data</a> <a href="manual.html#sample" target="_blank"><img alt="" src="images/question_mark_15.png" /></a></div>
+						<div id="sample_block" style="border:thin #d8d8d8 solid;background-color:#f2f2f2;padding:7px;display:none">
+							<div class="font2">
+								<input type="button" value="Load sample data" onclick="loadData()"/>&nbsp;
+							</div>
+						</div>
+					</td>
+				</tr>
+		
+				<tr>
+					<td style="padding:7px 0 0 0">
+						<input type="image" src="images/submit_button.png" value="Submit" />&nbsp;
+						<input type="image" src="images/clear_button.png" value="" onclick="resetSelection();return false;" />
+					</td>
+				</tr>
+			</table>
+			</form>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="left_bar"></td>
+		<td style="padding:10px 15px 10px 15px">
+			<script type="text/javascript" src="ref_logos.js"></script>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="footer_font">
+			<script type="text/javascript" src="footer.js"></script>
+		</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

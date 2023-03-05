@@ -1,0 +1,2963 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>RBPmap Motifs Selection</title>
+<link rel="stylesheet" type="text/css" href="RBPmap.css"/>
+
+<script type="text/javascript">
+
+// Open/close div block and switch between plus/minus
+function changeDisplay(blockID, imgID){
+	var block_elem = document.getElementById(blockID);
+	var img_elem = document.getElementById(imgID);
+	
+	if (block_elem.style.display == "none"){
+		block_elem.style.display = "block";
+		img_elem.src = "images/minus_14.png";
+		document.getElementById('top_submit_block').style.display = "block";
+		
+	}
+	else{
+		block_elem.style.display = "none";
+		img_elem.src = "images/plus_14.png";
+		document.getElementById('top_submit_block').style.display = "none";
+
+	}
+}
+
+function changeCheck(SF) {
+
+	var arg;
+	
+	for (var i=1; i<arguments.length; i++){
+		arg = document.getElementById(arguments[i]);	
+		if (SF.checked == true){
+			arg.checked = true;
+		}
+		else {
+			arg.checked = false;
+		}
+	}
+}
+
+// Check/uncheck human/mouse motifs
+function changeCheckHuman(elem) {
+
+	var arg = document.getElementsByClassName("human");
+	var motif;
+	
+	for (var i=0 ; i<arg.length ; i++){
+		if (elem.checked == true){
+			arg[i].checked = true;
+		}
+		else {
+			arg[i].checked = false;
+		}
+	}
+}
+
+// Check/uncheck human/mouse motifs
+function changeCheckDrosophila(elem) {
+
+	var arg = document.getElementsByClassName("drosophila");
+	var motif;
+	
+	for (var i=0 ; i<arg.length ; i++){
+		if (elem.checked == true){
+			arg[i].checked = true;
+		}
+		else {
+			arg[i].checked = false;
+		}
+	}
+}
+
+
+// Send the form data back to the parent window
+function SendData(){
+	
+	var objForm = document.motifs_form;
+	var list = "";
+	var i = 0;
+	var motif_count = 0;
+	var check_boxes_count = 0; 
+	var obj;
+	var list_html = "";
+	
+	// display the selected motifs in the parent window
+	obj = opener.document.getElementById('selection');
+	obj.style.visibility= "visible";
+	obj.style.lineHeight = "12px";
+	obj.style.paddingTop = "5px"; 
+	obj.innerHTML = '<b>Selected motifs:</b> ';
+	
+	// Concat the selected motifs to a string
+	for (i = 0 ; i < objForm.motifs_list.length ; i++){ 
+		
+		if (objForm.motifs_list[i].checked) {
+		
+			if (objForm.motifs_list[i].id) { // consider only motifs (no SFs)
+				list += (list.length > 0 ? "," : "") + objForm.motifs_list[i].id;
+				list_html += (motif_count > 0 ? ", " : "") + objForm.motifs_list[i].value;
+				
+				motif_count++;
+			}
+			
+			check_boxes_count++;
+		} 
+	}
+	
+	obj.innerHTML += list_html;
+	
+	// No motif was selected
+	if (list == "") {
+		obj.innerHTML = '<b>Selected motifs:</b> None';
+		list = 'None';
+	}
+	else {
+	
+		// All human/mouse motifs are selected
+		if (objForm.human_motifs_checkbox.checked) {
+			obj.innerHTML = '<b>Selected motifs:</b> All Human/Mouse motifs';
+			list = 'All human';
+		}
+	
+		// All drosophila motifs are selected
+		if (objForm.drosophila_motifs_checkbox.checked) {
+			obj.innerHTML = '<b>Selected motifs:</b> All Drosophila motifs';
+			list = 'All drosophila';
+		}
+		
+		// All motifs are selected
+		if (check_boxes_count == objForm.motifs_list.length) {
+			obj.innerHTML = '<b>Selected motifs:</b> All RBPmap motifs';
+			list = 'All';
+		}
+	}
+	
+	// pass the string to the parent window
+	opener.document.RBPmap_form.motifs_selection.value = list;
+	
+	//close window
+	self.close();
+}
+
+</script>
+
+</head>
+
+<body style="background-color:#ffffff; padding-left:20px">
+	<div style="margin-bottom:0;margin-top:0;font-size:18px;">
+		Search the following list and select the proteins/motifs of interest<br />
+		<span style="font-size:16px">(Check/uncheck a protein name in order to select/deselect all its ascribed motifs).</span>
+	</div>
+
+	<form name="motifs_form" style="margin-top:8px">
+	<table style="border:thin #d6d6d6 solid">
+		<tr style="background-color:#f2f2f2">
+			<td style="padding:2px 5px 2px 5px">
+				<div id="top_submit_block" style="display:none">
+					<input type="button" style="color:#8000AA;font-weight:bold" value="Submit" onclick="SendData()" />
+				</div>
+			</td>
+		</tr>
+		<tr style="background-color:#f2f2f2">
+			<td>
+				<div class="font2">
+					<a href="javascript:changeDisplay('human_motifs_block', 'human_motifs_img')"><img id="human_motifs_img" alt="" src="images/plus_14.png" style="border:none" /></a>
+					<input type="checkbox" name="human_motifs_checkbox" value="human_motifs" onclick="changeCheckHuman(this)" />Human / Mouse motifs
+				</div>
+				<div id="human_motifs_block" style="margin:5px 5px 5px 30px;display:none">
+					<table style="border:thin #d6d6d6 solid">
+						<tr style="background-color:#4b4b4b">
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white">Protein Name</td>
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white">Motifs</td>
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white">References</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="A1CF" class="human" onclick="changeCheck(this, '1', '167')" />A1CF
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="A1CF(Hs/Mm):wuaauur" class="human" id="1" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/A1CF_wuaauur_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="A1CF(Hs/Mm):uaauua" class="human" id="167" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/A1CF_uaauua_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ANKHD1" class="human" onclick="changeCheck(this, '2')" />ANKHD1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ANKHD1(Hs/Mm):agacgww" class="human" id="2" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ANKHD1_agacgww_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="BOLL" class="human" onclick="changeCheck(this, '168', '169')" />BOLL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="BOLL(Hs/Mm):guguua" class="human" id="168" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BOLL_guguua_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="BOLL(Hs/Mm):uuuguuu" class="human" id="169" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BOLL_uuuguuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="BRUNOL4" class="human" onclick="changeCheck(this, '3')" />BRUNOL4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="BRUNOL4(Hs/Mm):kgugukk" class="human" id="3" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BRUNOL4_kgugukk_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="BRUNOL5" class="human" onclick="changeCheck(this, '4')" />BRUNOL5
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="BRUNOL5(Hs/Mm):ugugukk" class="human" id="4" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BRUNOL5_ugugukk_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="BRUNOL6" class="human" onclick="changeCheck(this, '5')" />BRUNOL6
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="BRUNOL6(Hs/Mm):ugugdkg" class="human" id="5" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BRUNOL6_ugugdkg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CELF1" class="human" onclick="changeCheck(this, '170', '171')" />CELF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CELF1(Hs/Mm):aaugu" class="human" id="170" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CELF1_aaugu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="CELF1(Hs/Mm):uauguuu" class="human" id="171" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CELF1_uauguuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CNOT4" class="human" onclick="changeCheck(this, '6', '172')" />CNOT4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CNOT4(Hs/Mm):gacaga" class="human" id="6" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CNOT4_gacaga_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="CNOT4(Hs/Mm):acacag" class="human" id="172" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CNOT4_acacag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CPEB1" class="human" onclick="changeCheck(this, '173')" />CPEB1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CPEB1(Hs/Mm):uuuuu" class="human" id="173" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CPEB1_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CPEB2" class="human" onclick="changeCheck(this, '7')" />CPEB2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CPEB2(Hs/Mm):chuuuuu" class="human" id="7" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CPEB2_chuuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CPEB4" class="human" onclick="changeCheck(this, '8')" />CPEB4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CPEB4(Hs/Mm):uuuuuu" class="human" id="8" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CPEB4_uuuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="DAZ3" class="human" onclick="changeCheck(this, '174', '175', '176')" />DAZ3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="DAZ3(Hs/Mm):acguuu" class="human" id="174" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/DAZ3_acguuu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="DAZ3(Hs/Mm):aguuuu" class="human" id="175" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/DAZ3_aguuuu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="DAZ3(Hs/Mm):uuguuu" class="human" id="176" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/DAZ3_uuguuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="DAZAP1" class="human" onclick="changeCheck(this, '10', '177')" />DAZAP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="DAZAP1(Hs/Mm):uagkwwr" class="human" id="10" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/DAZAP1_uagkwwr_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="DAZAP1(Hs/Mm):uauauag" class="human" id="177" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/DAZAP1_uauauag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 18391021, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="EIF4G2" class="human" onclick="changeCheck(this, '178', '179', '180')" />EIF4G2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="EIF4G2(Hs/Mm):cgccg" class="human" id="178" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/EIF4G2_cgccg_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="EIF4G2(Hs/Mm):gcgag" class="human" id="179" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/EIF4G2_gcgag_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="EIF4G2(Hs/Mm):gguugc" class="human" id="180" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/EIF4G2_gguugc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="ELAVL4" class="human" onclick="changeCheck(this, '181', '182')" />ELAVL4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ELAVL4(Hs/Mm):uaauu" class="human" id="181" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ELAVL4_uaauu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="ELAVL4(Hs/Mm):uuauu" class="human" id="182" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ELAVL4_uuauu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ENOX1" class="human" onclick="changeCheck(this, '11')" />ENOX1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ENOX1(Hs/Mm):hrkacag" class="human" id="11" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ENOX1_hrkacag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="ESRP1" class="human" onclick="changeCheck(this, '183')" />ESRP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ESRP1(Hs/Mm):gggugg" class="human" id="183" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ESRP1_gggugg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ESRP2" class="human" onclick="changeCheck(this, '12')" />ESRP2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ESRP2(Hs/Mm):ugggrad" class="human" id="12" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ESRP2_ugggrad_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="EWSR1" class="human" onclick="changeCheck(this, '184', '185')" />EWSR1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="EWSR1(Hs/Mm):aggug" class="human" id="184" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/EWSR1_aggug_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="EWSR1(Hs/Mm):gggggggg" class="human" id="185" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/EWSR1_gggggggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="FMR1" class="human" onclick="changeCheck(this, '13')" />FMR1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="FMR1(Hs/Mm):kgacarg" class="human" id="13" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FMR1_kgacarg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="FUBP1" class="human" onclick="changeCheck(this, '186', '187')" />FUBP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="FUBP1(Hs/Mm):uauguau" class="human" id="187" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUBP1_uauguau_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="FUBP1(Hs/Mm):uauuu" class="human" id="186" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUBP1_uauuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="FUBP3" class="human" onclick="changeCheck(this, '188', '189', '190')" />FUBP3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="FUBP3(Hs/Mm):uuaau" class="human" id="189" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUBP3_uuaau_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="FUBP3(Hs/Mm):uauau" class="human" id="188" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUBP3_uauau_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="FUBP3(Hs/Mm):uuuau" class="human" id="190" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUBP3_uuuau_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="FUS" class="human" onclick="changeCheck(this, '14', '191')" />FUS
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="FUS(Hs/Mm):cgcgc" class="human" id="14" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUS_cgcgc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="FUS(Hs/Mm):ggggg" class="human" id="191" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FUS_ggggg_human.png" /></td>
+
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="FXR1" class="human" onclick="changeCheck(this, '15')" />FXR1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="FXR1(Hs/Mm):aygacr" class="human" id="15" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FXR1_aygacr_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="FXR2" class="human" onclick="changeCheck(this, '16')" />FXR2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="FXR2(Hs/Mm):dgacrrr" class="human" id="16" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FXR2_dgacrrr_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="G3BP2" class="human" onclick="changeCheck(this, '17')" />G3BP2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="G3BP2(Hs/Mm):aggaudr" class="human" id="17" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/G3BP2_aggaudr_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="HNRNPA0" class="human" onclick="changeCheck(this, '192', '193')" />HNRNPA0
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPA0(Hs/Mm):auuagu" class="human" id="192" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA0_auuagu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPA0(Hs/Mm):uauag" class="human" id="193" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA0_uauag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPA1" class="human" onclick="changeCheck(this, '18', '19', '20')" />HNRNPA1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPA1(Hs/Mm):duagggw" class="human" id="18" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA1_duagggw_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPA1(Hs/Mm):guaguagu" class="human" id="19" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA1_guaguagu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPA1(Hs/Mm):rgnyag" class="human" id="20" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA1_rgnyag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 22574288</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPA1L2" class="human" onclick="changeCheck(this, '21')" />HNRNPA1L2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPA1L2(Hs/Mm):duagggw" class="human" id="21" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA1L2_duagggw_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPA2B1" class="human" onclick="changeCheck(this, '23', '24', '22', '194', '195')" />HNRNPA2B1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPA2B1(Hs/Mm):gguaguag" class="human" id="23" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA2B1_gguaguag_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPA2B1(Hs/Mm):aggwuhgr" class="human" id="24" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA2B1_aggwuhgr_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPA2B1(Hs/Mm):duagggw" class="human" id="22" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA2B1_duagggw_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPA2B1(Hs/Mm):gggua" class="human" id="195" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA2B1_gggua_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPA2B1(Hs/Mm):ggggg" class="human" id="194" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPA2B1_ggggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 22574288, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPC" class="human" onclick="changeCheck(this, '25', '196')" />HNRNPC
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPC(Hs/Mm):huuuuuk" class="human" id="25" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPC_huuuuuk_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPC(Hs/Mm):uuuuu" class="human" id="196" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPC_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPCL1" class="human" onclick="changeCheck(this, '26', '197')" />HNRNPCL1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPCL1(Hs/Mm):huuuuuk" class="human" id="26" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPCL1_huuuuuk_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPCL1(Hs/Mm):uuuuu" class="human" id="197" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPCL1_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPD" class="human" onclick="changeCheck(this, '198')" />HNRNPD
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPD(Hs/Mm):uauuaa" class="human" id="198" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPD_uauuaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPDL" class="human" onclick="changeCheck(this, '199', '200', '201')" />HNRNPDL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPDL(Hs/Mm):uaaaa" class="human" id="199" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPDL_uaaaa_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPDL(Hs/Mm):uauau" class="human" id="201" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPDL_uauau_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPDL(Hs/Mm):uaauu" class="human" id="200" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPDL_uaauu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPF" class="human" onclick="changeCheck(this, '27', '28', '202', '203')" />HNRNPF
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPF(Hs/Mm):gukgykg" class="human" id="27" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPF_gukgykg_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPF(Hs/Mm):gugkau" class="human" id="28" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPF_gugkau_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPF(Hs/Mm):agggu" class="human" id="202" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPF_agggu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPF(Hs/Mm):gggagggg" class="human" id="203" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPF_gggagggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 22574288, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPH1" class="human" onclick="changeCheck(this, '30')" />HNRNPH1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPH1(Hs/Mm):gargag" class="human" id="30" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPH1_gargag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 22574288</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPH2" class="human" onclick="changeCheck(this, '31', '204')" />HNRNPH2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPH2(Hs/Mm):gggaggg" class="human" id="31" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPH2_gggaggg_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPH2(Hs/Mm):gggggg" class="human" id="204" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPH2_gggggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPK" class="human" onclick="changeCheck(this, '32', '205', '206')" />HNRNPK
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPK(Hs/Mm):ccawmcc" class="human" id="32" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPK_ccawmcc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPK(Hs/Mm):cacgc" class="human" id="205" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPK_cacgc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPK(Hs/Mm):gccca" class="human" id="206" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPK_gccca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 19258514, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPL" class="human" onclick="changeCheck(this, '34', '33', '207')" />HNRNPL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPL(Hs/Mm):acacrav" class="human" id="34" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPL_acacrav_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPL(Hs/Mm):amayama" class="human" id="33" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPL_amayama_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="HNRNPL(Hs/Mm):uacaca" class="human" id="207" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPL_uacaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 19124611, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRPLL" class="human" onclick="changeCheck(this, '35')" />HNRPLL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRPLL(Hs/Mm):rcahaca" class="human" id="35" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRPLL_rcahaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPM" class="human" onclick="changeCheck(this, '36')" />HNRNPM
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPM(Hs/Mm):gguugguu" class="human" id="36" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPM_gguugguu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 22574288</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HNRNPU" class="human" onclick="changeCheck(this, '37')" />HNRNPU
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HNRNPU(Hs/Mm):uguauug" class="human" id="37" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HNRNPU_uguauug_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 22574288</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HuR" class="human" onclick="changeCheck(this, '38')" />HuR
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HuR(Hs/Mm):uukruuu" class="human" id="38" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HuR_uukruuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="IGF2BP1" class="human" onclick="changeCheck(this, '208')" />IGF2BP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="IGF2BP1(Hs/Mm):auaca" class="human" id="208" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/IGF2BP1_auaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="IGF2BP2" class="human" onclick="changeCheck(this, '39', '209')" />IGF2BP2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="IGF2BP2(Hs/Mm):vmahwca" class="human" id="39" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/IGF2BP2_vmahwca_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="IGF2BP2(Hs/Mm):caacaca" class="human" id="209" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/IGF2BP2_caacaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="IGF2BP3" class="human" onclick="changeCheck(this, '40')" />IGF2BP3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="IGF2BP3(Hs/Mm):amahwca" class="human" id="40" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/IGF2BP3_amahwca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ILF2" class="human" onclick="changeCheck(this, '210', '211')" />ILF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ILF2(Hs/Mm):gggua" class="human" id="211" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ILF2_gggua_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="ILF2(Hs/Mm):gggugggg" class="human" id="210" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ILF2_gggugggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="KHDRBS1" class="human" onclick="changeCheck(this, '41')" />KHDRBS1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="KHDRBS1(Hs/Mm):auaaaav" class="human" id="41" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHDRBS1_auaaaav_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="KHDRBS2" class="human" onclick="changeCheck(this, '42', '212')" />KHDRBS2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="KHDRBS2(Hs/Mm):rauaaam" class="human" id="42" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHDRBS2_rauaaam_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="KHDRBS2(Hs/Mm):aauaaa" class="human" id="212" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHDRBS2_aauaaa_human.png" /></td>
+
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="KHDRBS3" class="human" onclick="changeCheck(this, '43', '213')" />KHDRBS3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="KHDRBS3(Hs/Mm):auaaav" class="human" id="43" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHDRBS3_auaaav_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="KHDRBS3(Hs/Mm):aauaaa" class="human" id="213" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHDRBS3_aauaaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="KHSRP" class="human" onclick="changeCheck(this, '214', '215')" />KHSRP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="KHSRP(Hs/Mm):uguau" class="human" id="214" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHSRP_uguau_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="KHSRP(Hs/Mm):uuuuu" class="human" id="215" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/KHSRP_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="LIN28A" class="human" onclick="changeCheck(this, '44')" />LIN28A
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="LIN28A(Hs/Mm):hggagwa" class="human" id="44" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/LIN28A_hggagwa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 19713957</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="MATR3" class="human" onclick="changeCheck(this, '45')" />MATR3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="MATR3(Hs/Mm):maucuur" class="human" id="45" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MATR3_maucuur_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="MBNL1" class="human" onclick="changeCheck(this, '46', '216', '217', '218')" />MBNL1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="MBNL1(Hs/Mm):gcuugc" class="human" id="46" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MBNL1_gcuugc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="MBNL1(Hs/Mm):cgcuu" class="human" id="216" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MBNL1_cgcuu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="MBNL1(Hs/Mm):ugcua" class="human" id="218" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MBNL1_ugcua_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="MBNL1(Hs/Mm):gcgcagc" class="human" id="217" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MBNL1_gcgcagc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 17942744, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="MSI1" class="human" onclick="changeCheck(this, '48', '219', '220')" />MSI1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="MSI1(Hs/Mm):uaguwrg" class="human" id="48" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MSI1_uaguwrg_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="MSI1(Hs/Mm):uagca" class="human" id="220" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MSI1_uagca_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="MSI1(Hs/Mm):auuaguu" class="human" id="219" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MSI1_auuaguu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="NOVA1" class="human" onclick="changeCheck(this, '221', '222')" />NOVA1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="NOVA1(Hs/Mm):aucac" class="human" id="221" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/NOVA1_aucac_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="NOVA1(Hs/Mm):uucauaa" class="human" id="222" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/NOVA1_uucauaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="NUPL2" class="human" onclick="changeCheck(this, '223', '224')" />NUPL2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="NUPL2(Hs/Mm):caaagg" class="human" id="224" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/NUPL2_caaagg_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="NUPL2(Hs/Mm):aaaauaa" class="human" id="223" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/NUPL2_aaaauaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PABPC1" class="human" onclick="changeCheck(this, '50')" />PABPC1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PABPC1(Hs/Mm):araaaam" class="human" id="50" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPC1_araaaam_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PABPC3" class="human" onclick="changeCheck(this, '51')" />PABPC3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PABPC3(Hs/Mm):raaaacm" class="human" id="51" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPC3_raaaacm_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PABPC4" class="human" onclick="changeCheck(this, '52')" />PABPC4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PABPC4(Hs/Mm):aaaaaar" class="human" id="52" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPC4_aaaaaar_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PABPC5" class="human" onclick="changeCheck(this, '53')" />PABPC5
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PABPC5(Hs/Mm):agaaadu" class="human" id="53" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPC5_agaaadu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PABPN1" class="human" onclick="changeCheck(this, '54')" />PABPN1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PABPN1(Hs/Mm):araaga" class="human" id="54" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPN1_araaga_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PABPN1L" class="human" onclick="changeCheck(this, '225')" />PABPN1L
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PABPN1L(Hs/Mm):aaaaa" class="human" id="225" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABPN1L_aaaaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PCBP1" class="human" onclick="changeCheck(this, '55', '226')" />PCBP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PCBP1(Hs/Mm):ccwwhcc" class="human" id="55" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP1_ccwwhcc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="PCBP1(Hs/Mm):agcccc" class="human" id="226" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP1_agcccc_human.png" /></td>
+
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 10075886, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PCBP2" class="human" onclick="changeCheck(this, '56', '227', '228', '229')" />PCBP2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PCBP2(Hs/Mm):ccyycch" class="human" id="56" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP2_ccyycch_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="PCBP2(Hs/Mm):aaccc" class="human" id="227" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP2_aaccc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="PCBP2(Hs/Mm):uuccc" class="human" id="229" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP2_uuccc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="PCBP2(Hs/Mm):ccccacccc" class="human" id="228" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP2_ccccacccc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 10075886, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PCBP3" class="human" onclick="changeCheck(this, '57')" />PCBP3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PCBP3(Hs/Mm):uuuycc" class="human" id="57" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP3_uuuycc_mouse.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PCBP4" class="human" onclick="changeCheck(this, '230', '231')" />PCBP4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PCBP4(Hs/Mm):gucgg" class="human" id="231" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP4_gucgg_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="PCBP4(Hs/Mm):auccccc" class="human" id="230" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PCBP4_auccccc_human.png" /></td>
+
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PPRC1" class="human" onclick="changeCheck(this, '58')" />PPRC1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PPRC1(Hs/Mm):ssgcgcs" class="human" id="58" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PPRC1_ssgcgcs_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PRR3" class="human" onclick="changeCheck(this, '232', '233', '297')" />PRR3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PRR3(Hs/Mm):auuac" class="human" id="232" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PRR3_auuac_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="PRR3(Hs/Mm):uauaag" class="human" id="233" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PRR3_uauaag_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="PRR3(Hs/Mm):augaa" class="human" id="297" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PRR3_augaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PTB3" class="human" onclick="changeCheck(this, '234')" />PTB3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PTB3(Hs/Mm):cuuucu" class="human" id="234" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PTB3_cuuucu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PTBP3" class="human" onclick="changeCheck(this, '235')" />PTBP3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PTBP3(Hs/Mm):cuuucu" class="human" id="235" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PTBP3_cuuucu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PUF60" class="human" onclick="changeCheck(this, '236', '237')" />PUF60
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PUF60(Hs/Mm):ucucu" class="human" id="236" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUF60_ucucu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="PUF60(Hs/Mm):uuuuu" class="human" id="237" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUF60_uuuuu_human.png" /></td>
+
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PUM1" class="human" onclick="changeCheck(this, '238', '239')" />PUM1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PUM1(Hs/Mm):uguau" class="human" id="239" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUM1_uguau_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="PUM1(Hs/Mm):uaaau" class="human" id="238" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUM1_uaaau_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PUM2" class="human" onclick="changeCheck(this, '62')" />PUM2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PUM2(Hs/Mm):uguanaua" class="human" id="62" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUM2_uguanaua_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 20371350</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="QKI" class="human" onclick="changeCheck(this, '63')" />QKI
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="QKI(Hs/Mm):acuaay" class="human" id="63" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/QKI_acuaay_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 20371350</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RALY" class="human" onclick="changeCheck(this, '64', '240')" />RALY
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RALY(Hs/Mm):uuuuuub" class="human" id="64" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RALY_uuuuuub_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RALY(Hs/Mm):uuuuu" class="human" id="240" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RALY_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBFOX1" class="human" onclick="changeCheck(this, '65')" />RBFOX1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBFOX1(Hs/Mm):wgcaugm" class="human" id="65" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBFOX1_wgcaugm_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBFOX2" class="human" onclick="changeCheck(this, '241')" />RBFOX2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBFOX2(Hs/Mm):gcaug" class="human" id="241" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBFOX2_gcaug_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBFOX3" class="human" onclick="changeCheck(this, '242')" />RBFOX3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBFOX3(Hs/Mm):gcaug" class="human" id="242" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBFOX3_gcaug_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM3" class="human" onclick="changeCheck(this, '68')" />RBM3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM3(Hs/Mm):radacka" class="human" id="68" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM3_radacka_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM4" class="human" onclick="changeCheck(this, '70', '251')" />RBM4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM4(Hs/Mm):gcgcgss" class="human" id="70" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM4_gcgcgss_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM4(Hs/Mm):gcgcgu" class="human" id="251" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM4_gcgcgu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 19561594, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM4B" class="human" onclick="changeCheck(this, '259', '260')" />RBM4B
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM4B(Hs/Mm):acggga" class="human" id="259" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM4B_acggga_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM4B(Hs/Mm):gcgcgg" class="human" id="260" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM4B_gcgcgg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM5" class="human" onclick="changeCheck(this, '75')" />RBM5
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM5(Hs/Mm):garggwr" class="human" id="75" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM5_garggwr_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM6" class="human" onclick="changeCheck(this, '76', '261', '262')" />RBM6
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM6(Hs/Mm):hauccar" class="human" id="76" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM6_hauccar_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM6(Hs/Mm):ccacc" class="human" id="261" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM6_ccacc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM6(Hs/Mm):cgucca" class="human" id="262" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM6_cgucca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM8A" class="human" onclick="changeCheck(this, '77')" />RBM8A
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM8A(Hs/Mm):rygcgcb" class="human" id="77" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM8A_rygcgcb_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM15B" class="human" onclick="changeCheck(this, '243', '244')" />RBM15B
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM15B(Hs/Mm):uuuaa" class="human" id="243" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM15B_uuuaa_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM15B(Hs/Mm):uuuuauuu" class="human" id="244" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM15B_uuuuauuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM22" class="human" onclick="changeCheck(this, '245')" />RBM22
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM22(Hs/Mm):accgg" class="human" id="245" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM22_accgg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM23" class="human" onclick="changeCheck(this, '246')" />RBM23
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM23(Hs/Mm):ccccc" class="human" id="246" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM23_ccccc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="RBM24" class="human" onclick="changeCheck(this, '66', '247', '248', '249')" />RBM24
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM24(Hs/Mm):wgwgugd" class="human" id="66" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM24_wgwgugd_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM24(Hs/Mm):ggggg" class="human" id="247" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM24_ggggg_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM24(Hs/Mm):gugug" class="human" id="248" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM24_gugug_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM24(Hs/Mm):uuuuuuuuu" class="human" id="249" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM24_uuuuuuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM25" class="human" onclick="changeCheck(this, '250')" />RBM25
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM25(Hs/Mm):ggggag" class="human" id="250" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM25_ggggag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM28" class="human" onclick="changeCheck(this, '67')" />RBM28
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM28(Hs/Mm):gwguagd" class="human" id="67" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM28_gwguagd_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM38" class="human" onclick="changeCheck(this, '69')" />RBM38
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM38(Hs/Mm):kkguguk" class="human" id="69" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM38_kkguguk_mouse.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM41" class="human" onclick="changeCheck(this, '71', '252')" />RBM41
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM41(Hs/Mm):wuacwuk" class="human" id="71" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM41_wuacwuk_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM41(Hs/Mm):uacuu" class="human" id="252" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM41_uacuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM42" class="human" onclick="changeCheck(this, '72')" />RBM42
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM42(Hs/Mm):aacuamg" class="human" id="72" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM42_aacuamg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM45" class="human" onclick="changeCheck(this, '73', '253', '254', '255', '256')" />RBM45
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM45(Hs/Mm):gacgamv" class="human" id="73" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM45_gacgamv_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM45(Hs/Mm):acacc" class="human" id="253" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM45_acacc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM45(Hs/Mm):acgac" class="human" id="254" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM45_acgac_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM45(Hs/Mm):acgca" class="human" id="255" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM45_acgca_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM45(Hs/Mm):cuuac" class="human" id="256" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM45_cuuac_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM46" class="human" onclick="changeCheck(this, '74')" />RBM46
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM46(Hs/Mm):rausawd" class="human" id="74" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM46_rausawd_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBM47" class="human" onclick="changeCheck(this, '257', '258')" />RBM47
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBM47(Hs/Mm):ugauu" class="human" id="258" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM47_ugauu_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBM47(Hs/Mm):uaauua" class="human" id="257" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBM47_uaauua_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBMS1" class="human" onclick="changeCheck(this, '78')" />RBMS1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBMS1(Hs/Mm):kauauas" class="human" id="78" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBMS1_kauauas_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBMS2" class="human" onclick="changeCheck(this, '263')" />RBMS2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBMS2(Hs/Mm):auauaa" class="human" id="263" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBMS2_auauaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBMS3" class="human" onclick="changeCheck(this, '79', '264')" />RBMS3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBMS3(Hs/Mm):hauaua" class="human" id="79" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBMS3_hauaua_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RBMS3(Hs/Mm):auauau" class="human" id="264" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBMS3_auauau_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RC3H1" class="human" onclick="changeCheck(this, '265', '266')" />RC3H1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RC3H1(Hs/Mm):cuaug" class="human" id="265" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RC3H1_cuaug_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="RC3H1(Hs/Mm):uauauua" class="human" id="266" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RC3H1_uauauua_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SF1" class="human" onclick="changeCheck(this, '267', '268')" />SF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SF1(Hs/Mm):uaauc" class="human" id="267" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SF1_uaauc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SF1(Hs/Mm):uuaaca" class="human" id="268" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SF1_uuaaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SAMD4A" class="human" onclick="changeCheck(this, '80')" />SAMD4A
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SAMD4A(Hs/Mm):gckgghm" class="human" id="80" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SAMD4A_gckgghm_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SART3" class="human" onclick="changeCheck(this, '81')" />SART3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SART3(Hs/Mm):araaaam" class="human" id="81" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SART3_araaaam_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SFPQ" class="human" onclick="changeCheck(this, '82', '269', '270')" />SFPQ
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SFPQ(Hs/Mm):kurrukk" class="human" id="82" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SFPQ_kurrukk_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SFPQ(Hs/Mm):uagug" class="human" id="270" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SFPQ_uagug_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SFPQ(Hs/Mm):uguaag" class="human" id="269" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SFPQ_uguaag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SNRNP70" class="human" onclick="changeCheck(this, '83')" />SNRNP70
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SNRNP70(Hs/Mm):rwucaag" class="human" id="83" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SNRNP70_rwucaag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SNRPA" class="human" onclick="changeCheck(this, '84', '271')" />SNRPA
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SNRPA(Hs/Mm):wugcacr" class="human" id="84" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SNRPA_wugcacr_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SNRPA(Hs/Mm):ugcaca" class="human" id="271" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SNRPA_ugcaca_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SRSF1" class="human" onclick="changeCheck(this, '85', '86', '87')" />SRSF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SRSF1(Hs/Mm):gragga" class="human" id="85" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF1_gragga_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 19561594</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<input type="checkbox" name="motifs_list" value="SRSF2" class="human" onclick="changeCheck(this, '89', '274', '275')" />SRSF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px; height: 28px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SRSF2(Hs/Mm):ggagwd" class="human" id="89" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF2_ggagwd_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SRSF2(Hs/Mm):uccag" class="human" id="275" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF2_uccag_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SRSF2(Hs/Mm):agcagc" class="human" id="274" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF2_agcagc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px; height: 28px;">PMID: 10094314, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SRSF4" class="human" onclick="changeCheck(this, '276')" />SRSF4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SRSF4(Hs/Mm):agcag" class="human" id="276" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF4_agcag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SRSF5" class="human" onclick="changeCheck(this, '277', '278')" />SRSF5
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SRSF5(Hs/Mm):gcagc" class="human" id="277" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF5_gcagc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SRSF5(Hs/Mm):gcccc" class="human" id="278" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF5_gcccc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SRSF7" class="human" onclick="changeCheck(this, '96', '97', '98')" />SRSF7
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SRSF7(Hs/Mm):acgacg" class="human" id="96" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF7_acgacg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 10094314</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SRSF8" class="human" onclick="changeCheck(this, '279')" />SRSF8
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SRSF8(Hs/Mm):agcagc" class="human" id="279" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF8_agcagc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SRSF9" class="human" onclick="changeCheck(this, '99', '100', '280', '281')" />SRSF9
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SRSF9(Hs/Mm):akgavmr" class="human" id="99" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF9_akgavmr_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SRSF9(Hs/Mm):kgrwgsm" class="human" id="100" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF9_kgrwgsm_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SRSF9(Hs/Mm):gggaa" class="human" id="281" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF9_gggaa_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SRSF9(Hs/Mm):aggag" class="human" id="280" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF9_aggag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 17548433, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SRSF10" class="human" onclick="changeCheck(this, '88', '272')" />SRSF10
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SRSF10(Hs/Mm):agagavm" class="human" id="88" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF10_agagavm_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="SRSF10(Hs/Mm):cagcag" class="human" id="272" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF10_cagcag_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SRSF11" class="human" onclick="changeCheck(this, '273')" />SRSF11
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SRSF11(Hs/Mm):agggg" class="human" id="273" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRSF11_agggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="TAF15" class="human" onclick="changeCheck(this, '282', '283')" />TAF15
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="TAF15(Hs/Mm):gggua" class="human" id="283" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TAF15_gggua_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="TAF15(Hs/Mm):ggggggg" class="human" id="282" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TAF15_ggggggg_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="TARDBP" class="human" onclick="changeCheck(this, '284', '285')" />TARDBP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px"> 
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="TARDBP(Hs/Mm):gagug" class="human" id="284" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TARDBP_gagug_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="TARDBP(Hs/Mm):guaug" class="human" id="285" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TARDBP_guaug_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="TIA1" class="human" onclick="changeCheck(this, '102', '286')" />TIA1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="TIA1(Hs/Mm):uuuuubk" class="human" id="102" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TIA1_uuuuubk_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="TIA1(Hs/Mm):uuuuu" class="human" id="286" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TIA1_uuuuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 16227602, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="TRA2A" class="human" onclick="changeCheck(this, '287')" />TRA2A
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="TRA2A(Hs/Mm):cugaaga" class="human" id="287" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TRA2A_cugaaga_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="TRNAU1AP" class="human" onclick="changeCheck(this, '288', '289')" />TRNAU1AP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px"> 
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="TRNAU1AP(Hs/Mm):auuua" class="human" id="289" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TRNAU1AP_auuua_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="TRNAU1AP(Hs/Mm):uuuuauu" class="human" id="288" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TRNAU1AP_uuuuauu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="TUT1" class="human" onclick="changeCheck(this, '107')" />TUT1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="TUT1(Hs/Mm):mrauacu" class="human" id="107" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TUT1_mrauacu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 21102410</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="U2AF2" class="human" onclick="changeCheck(this, '108')" />U2AF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="U2AF2(Hs/Mm):uuuuuyc" class="human" id="108" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/U2AF2_uuuuuyc_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="UNK" class="human" onclick="changeCheck(this, '290', '291')" />UNK
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px"> 
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="UNK(Hs/Mm):uauaga" class="human" id="291" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/UNK_uauaga_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="UNK(Hs/Mm):auuaguu" class="human" id="290" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/UNK_auuaguu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="YBX1" class="human" onclick="changeCheck(this, '109', '110')" />YBX1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="YBX1(Hs/Mm):aacaucd" class="human" id="109" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/YBX1_aacaucd_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 11222770</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="YBX2" class="human" onclick="changeCheck(this, '111')" />YBX2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="YBX2(Hs/Mm):aacawcd" class="human" id="111" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/YBX2_aacawcd_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ZC3H10" class="human" onclick="changeCheck(this, '112')" />ZC3H10
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ZC3H10(Hs/Mm):ssagcgm" class="human" id="112" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZC3H10_ssagcgm_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ZC3H14" class="human" onclick="changeCheck(this, '113')" />ZC3H14
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ZC3H14(Hs/Mm):uuuduuu" class="human" id="113" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZC3H14_uuuduuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ZCRB1" class="human" onclick="changeCheck(this, '114', '292')" />ZCRB1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ZCRB1(Hs/Mm):grhuuaa" class="human" id="114" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZCRB1_grhuuaa_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="ZCRB1(Hs/Mm):auuaau" class="human" id="292" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZCRB1_auuaau_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655, 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ZFP36" class="human" onclick="changeCheck(this, '293', '294')" />ZFP36
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ZFP36(Hs/Mm):uaaua" class="human" id="293" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZFP36_uaaua_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="ZFP36(Hs/Mm):uauuu" class="human" id="294" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZFP36_uauuu_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ZNF326" class="human" onclick="changeCheck(this, '295', '296')" />ZNF326
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ZNF326(Hs/Mm):auucc" class="human" id="295" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZNF326_auucc_human.png" /></td>
+										<td style="vertical-align:bottom;padding-left:5px"><input type="checkbox" name="motifs_list" value="ZNF326(Hs/Mm):cuauaa" class="human" id="296" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZNF326_cuauaa_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 29883606</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ZNF638" class="human" onclick="changeCheck(this, '115')" />ZNF638
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ZNF638(Hs/Mm):bguusku" class="human" id="115" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ZNF638_bguusku_human.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+		
+		<tr style="background-color:#f2f2f2">
+			<td>
+				<div class="font2">
+					<a href="javascript:changeDisplay('drosophila_motifs_block', 'drosophila_motifs_img')"><img id="drosophila_motifs_img" alt="" src="images/plus_14.png" style="border:none" /></a>
+					<input type="checkbox" name="drosophila_motifs_checkbox" value="drosophila_motifs" onclick="changeCheckDrosophila(this)" />Drosophila motifs
+				</div>
+				<div id="drosophila_motifs_block" style="margin:5px 5px 5px 30px;display:none">
+					<table style="border:thin #d6d6d6 solid">
+						<tr style="background-color:#4b4b4b">
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white">Protein Name</td>
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white;width:150px">Motifs</td>
+							<td class="font2" style="padding:2px 10px 2px 5px;color:white">References</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="A2BP1" class="drosophila" onclick="changeCheck(this, '145')" />A2BP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="A2BP1(Dm):ugcaug" class="drosophila" id="145" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/A2BP1_ugcaug_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ARET" class="drosophila" onclick="changeCheck(this, '116')" />ARET
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ARET(Dm):ukukugu" class="drosophila" id="116" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ARET_ukukugu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="B52" class="drosophila" onclick="changeCheck(this, '152')" />B52
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="B52(Dm):ggasgrv" class="drosophila" id="152" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/B52_ggasgrv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="BRU-3" class="drosophila" onclick="changeCheck(this, '144')" />BRU-3
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="BRU-3(Dm):kugkugu" class="drosophila" id="144" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/BRU-3_kugkugu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CG11360" class="drosophila" onclick="changeCheck(this, '148')" />CG11360
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CG11360(Dm):gagudw" class="drosophila" id="148" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG11360_gagudw_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CG14718" class="drosophila" onclick="changeCheck(this, '117')" />CG14718
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CG14718(Dm):cagakb" class="drosophila" id="117" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG14718_cagakb_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CG17838" class="drosophila" onclick="changeCheck(this, '149')" />CG17838
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CG17838(Dm):baaauud" class="drosophila" id="149" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG17838_baaauud_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CG2931" class="drosophila" onclick="changeCheck(this, '163')" />CG2931
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CG2931(Dm):dacuaag" class="drosophila" id="163" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG2931_dacuaag_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CG2950" class="drosophila" onclick="changeCheck(this, '118')" />CG2950
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CG2950(Dm):cracgav" class="drosophila" id="118" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG2950_cracgav_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CG33714" class="drosophila" onclick="changeCheck(this, '120')" />CG33714
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CG33714(Dm):bbgcgug" class="drosophila" id="120" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG33714_bbgcgug_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CG5213" class="drosophila" onclick="changeCheck(this, '121')" />CG5213
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CG5213(Dm):urcuuu" class="drosophila" id="121" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG5213_urcuuu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CG7804" class="drosophila" onclick="changeCheck(this, '162')" />CG7804
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CG7804(Dm):wgkrugr" class="drosophila" id="162" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG7804_wgkrugr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CG7903" class="drosophila" onclick="changeCheck(this, '160')" />CG7903
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CG7903(Dm):hwugcgr" class="drosophila" id="160" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CG7903_hwugcgr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CNOT4" class="drosophila" onclick="changeCheck(this, '119')" />CNOT4
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CNOT4(Dm):asacahw" class="drosophila" id="119" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CNOT4_asacahw_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="CPO" class="drosophila" onclick="changeCheck(this, '151')" />CPO
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="CPO(Dm):wgcaca" class="drosophila" id="151" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/CPO_wgcaca_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="EIF-2ALPHA" class="drosophila" onclick="changeCheck(this, '166')" />EIF-2ALPHA
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="EIF-2ALPHA(Dm):wgcaug" class="drosophila" id="166" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/EIF-2ALPHA_wgcaug_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ELAV" class="drosophila" onclick="changeCheck(this, '143')" />ELAV
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ELAV(Dm):uuudkuu" class="drosophila" id="143" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ELAV_uuudkuu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="FMR1" class="drosophila" onclick="changeCheck(this, '123')" />FMR1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="FMR1(Dm):ahggacr" class="drosophila" id="123" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FMR1_ahggacr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="FNE" class="drosophila" onclick="changeCheck(this, '142')" />FNE
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="FNE(Dm):uukdguu" class="drosophila" id="142" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/FNE_uukdguu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HOW" class="drosophila" onclick="changeCheck(this, '140')" />HOW
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HOW(Dm):acuaacv" class="drosophila" id="140" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HOW_acuaacv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HRB27C" class="drosophila" onclick="changeCheck(this, '124')" />HRB27C
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HRB27C(Dm):uaggwwa" class="drosophila" id="124" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HRB27C_uaggwwa_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HRB87F" class="drosophila" onclick="changeCheck(this, '125')" />HRB87F
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HRB87F(Dm):gguaggg" class="drosophila" id="125" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HRB87F_gguaggg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="HRB98DE" class="drosophila" onclick="changeCheck(this, '139')" />HRB98DE
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="HRB98DE(Dm):gguaggg" class="drosophila" id="139" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/HRB98DE_gguaggg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="LARK" class="drosophila" onclick="changeCheck(this, '126')" />LARK
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="LARK(Dm):dcgcgcg" class="drosophila" id="126" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/LARK_dcgcgcg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="MOD" class="drosophila" onclick="changeCheck(this, '156')" />MOD
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="MOD(Dm):aduggaa" class="drosophila" id="156" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MOD_aduggaa_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="MSI" class="drosophila" onclick="changeCheck(this, '127')" />MSI
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="MSI(Dm):wguagkd" class="drosophila" id="127" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MSI_wguagkd_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="MUB" class="drosophila" onclick="changeCheck(this, '153')" />MUB
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="MUB(Dm):waccckw" class="drosophila" id="153" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/MUB_waccckw_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ORB2" class="drosophila" onclick="changeCheck(this, '146')" />ORB2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ORB2(Dm):kuuukkk" class="drosophila" id="146" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ORB2_kuuukkk_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PABP" class="drosophila" onclick="changeCheck(this, '155')" />PABP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PABP(Dm):gaaaahv" class="drosophila" id="155" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PABP_gaaaahv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PAPI" class="drosophila" onclick="changeCheck(this, '122')" />PAPI
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PAPI(Dm):kgukugu" class="drosophila" id="122" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PAPI_kgukugu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PUF68" class="drosophila" onclick="changeCheck(this, '157')" />PUF68
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PUF68(Dm):uawdrgr" class="drosophila" id="157" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUF68_uawdrgr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="PUM" class="drosophila" onclick="changeCheck(this, '128')" />PUM
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="PUM(Dm):uguahak" class="drosophila" id="128" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/PUM_uguahak_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="QKR58E-1" class="drosophila" onclick="changeCheck(this, '158')" />QKR58E-1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="QKR58E-1(Dm):auaauwm" class="drosophila" id="158" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/QKR58E-1_auaauwm_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBP1" class="drosophila" onclick="changeCheck(this, '129')" />RBP1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBP1(Dm):wcaacrr" class="drosophila" id="129" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBP1_wcaacrr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBP1-LIKE" class="drosophila" onclick="changeCheck(this, '147')" />RBP1-LIKE
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBP1-LIKE(Dm):aucadcr" class="drosophila" id="147" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBP1-LIKE_aucadcr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RBP9" class="drosophila" onclick="changeCheck(this, '150')" />RBP9
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RBP9(Dm):uuddguu" class="drosophila" id="150" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RBP9_uuddguu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="REF2" class="drosophila" onclick="changeCheck(this, '130')" />REF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="REF2(Dm):agaagrm" class="drosophila" id="130" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/REF2_agaagrm_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RIN" class="drosophila" onclick="changeCheck(this, '154')" />RIN
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RIN(Dm):rrwugaw" class="drosophila" id="154" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RIN_rrwugaw_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RNP4F" class="drosophila" onclick="changeCheck(this, '131')" />RNP4F
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RNP4F(Dm):agakarr" class="drosophila" id="131" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RNP4F_agakarr_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="ROX8" class="drosophila" onclick="changeCheck(this, '164')" />ROX8
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="ROX8(Dm):myauuuu" class="drosophila" id="164" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/ROX8_myauuuu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="RSF1" class="drosophila" onclick="changeCheck(this, '132')" />RSF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="RSF1(Dm):acgacgv" class="drosophila" id="132" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/RSF1_acgacgv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SF1" class="drosophila" onclick="changeCheck(this, '133')" />SF1
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SF1(Dm):acuaayv" class="drosophila" id="133" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SF1_acuaayv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SF2" class="drosophila" onclick="changeCheck(this, '134')" />SF2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SF2(Dm):dggagga" class="drosophila" id="134" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SF2_dggagga_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SHEP" class="drosophila" onclick="changeCheck(this, '135')" />SHEP
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SHEP(Dm):auauuwd" class="drosophila" id="135" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SHEP_auauuwd_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SM" class="drosophila" onclick="changeCheck(this, '136')" />SM
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SM(Dm):abacacv" class="drosophila" id="136" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SM_abacacv_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SNF" class="drosophila" onclick="changeCheck(this, '161')" />SNF
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SNF(Dm):uwgcac" class="drosophila" id="161" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SNF_uwgcac_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>							
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SNRNP70K" class="drosophila" onclick="changeCheck(this, '159')" />SNRNP70K
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SNRNP70K(Dm):aucahg" class="drosophila" id="159" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SNRNP70K_aucahg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SRP54" class="drosophila" onclick="changeCheck(this, '165')" />SRP54
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SRP54(Dm):kkrgg" class="drosophila" id="165" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SRP54_kkrgg_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="SXL" class="drosophila" onclick="changeCheck(this, '141')" />SXL
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="SXL(Dm):uuuuuuu" class="drosophila" id="141" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/SXL_uuuuuuu_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="TRA2" class="drosophila" onclick="changeCheck(this, '137')" />TRA2
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="TRA2(Dm):vaagaa" class="drosophila" id="137" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/TRA2_vaagaa_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>		
+						<tr style="background-color:#f2f2f2">
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<input type="checkbox" name="motifs_list" value="U2AF50" class="drosophila" onclick="changeCheck(this, '138')" />U2AF50
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 0px">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="vertical-align:bottom"><input type="checkbox" name="motifs_list" value="U2AF50(Dm):uuuuuyy" class="drosophila" id="138" /></td>
+										<td class="motifs_td"><img alt="" src="images/motifs_updated/U2AF50_uuuuuyy_drosophila.png" /></td>
+									</tr>
+								</table>
+							</td>
+							<td style="vertical-align:bottom;padding:2px 5px 2px 5px">PMID: 23846655</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr style="background-color:#f2f2f2">
+			<td style="padding:2px 5px 2px 5px">
+				<input type="button" style="color:#8000AA;font-weight:bold" value="Submit" onclick="SendData()" />
+			</td>
+		</tr>
+
+	</table>
+
+	</form>
+
+</body>
+</html>
+
